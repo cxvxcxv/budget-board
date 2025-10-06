@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { STORAGE_KEYS } from '../constants/storage-keys.constants';
-import transactionsReducer from '../features/transactions/transactionsSlice';
 import { saveToLocalStorage } from '../utils/localStorage';
+import rootReducer from './rootReducer';
 
 export const store = configureStore({
-  reducer: {
-    transactions: transactionsReducer,
-  },
+  reducer: rootReducer,
 });
 
 //save transactions to localStorage whenever they change
