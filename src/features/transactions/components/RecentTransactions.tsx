@@ -19,11 +19,11 @@ export const RecentTransactions: React.FC = () => {
   }
 
   return (
-    <GlassCard className="h-full p-6">
+    <GlassCard className="h-full overflow-x-hidden p-6">
       <h2 className="mb-4 text-xl font-bold text-primary">
         Recent Transactions
       </h2>
-      <ul className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent max-h-64 space-y-3 overflow-y-auto">
+      <ul className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent space-y-3 overflow-y-auto md:max-h-64">
         {recentTransactions.map((transaction: ITransaction) => (
           <li
             key={transaction.id}

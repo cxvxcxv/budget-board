@@ -25,16 +25,16 @@ ChartJS.register(
   Legend,
 );
 
-export const TransactionsChart: React.FC = () => {
+export const LineChart: React.FC = () => {
   const transactions = useAppSelector(state => state.transactions.list);
   const data = useMemo(() => getLineChartData(transactions), [transactions]);
 
   return (
-    <GlassCard className="p-6">
+    <GlassCard className="overflow-x-hidden p-6">
       <h2 className="mb-4 text-xl font-semibold text-primary">
         Income vs Expense Overview
       </h2>
-      <div className="h-96 w-full">
+      <div className="h-52 w-full md:h-96">
         <Line data={data} options={lineChartOptions} />
       </div>
     </GlassCard>

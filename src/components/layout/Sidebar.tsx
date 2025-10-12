@@ -1,3 +1,3 @@
 export const Sidebar = () => {
-  return <aside className="border-border w-64 border-r p-4">Sidebar</aside>;
+  return <aside className="border-r border-border p-4 lg:w-64">Sidebar</aside>;
 };
