@@ -1,5 +1,6 @@
 export const lineChartOptions = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       labels: {

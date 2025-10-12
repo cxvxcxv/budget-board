@@ -5,11 +5,13 @@ import { SummaryStats } from '../transactions/components/SummaryStats';
 
 export const DashboardPage = () => {
   return (
-    <div className="space-y-6">
+    <div className="grid gap-8">
       <SummaryStats />
       <TransactionsChart />
-      <DoughnutChart />
-      <RecentTransactions />
+      <div className="grid grid-cols-[2fr_1fr] gap-8">
+        <RecentTransactions />
+        <DoughnutChart />
+      </div>
     </div>
   );
 };

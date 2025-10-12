@@ -30,11 +30,11 @@ export const TransactionsChart: React.FC = () => {
   const data = useMemo(() => getLineChartData(transactions), [transactions]);
 
   return (
-    <GlassCard className="w-fit p-6">
+    <GlassCard className="p-6">
       <h2 className="mb-4 text-xl font-semibold text-primary">
         Income vs Expense Overview
       </h2>
-      <div>
+      <div className="h-96 w-full">
         <Line data={data} options={lineChartOptions} />
       </div>
     </GlassCard>

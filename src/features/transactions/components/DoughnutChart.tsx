@@ -18,7 +18,7 @@ export default function DoughnutChart() {
   const handleFlip = () => setFlipped(prev => !prev);
 
   return (
-    <div className="perspective relative h-80 w-full max-w-sm">
+    <div className="perspective relative h-full w-full max-w-sm">
       <div
         className={clsx(
           'transform-style-3d relative h-full w-full duration-700',

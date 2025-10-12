@@ -23,7 +23,7 @@ export const SummaryStats: React.FC = () => {
   }, [transactions]);
 
   return (
-    <div className="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
       <GlassCard className="p-6 text-center">
         <h3 className="mb-2 text-text-dimmed">Total Income</h3>
         <p className="text-2xl font-semibold text-green-400">${income}</p>
