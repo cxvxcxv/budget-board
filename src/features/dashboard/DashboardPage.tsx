@@ -1,6 +1,6 @@
+import { TransactionsChart } from '../transactions/components/LineChart';
 import { RecentTransactions } from '../transactions/components/RecentTransactions';
-import { SummaryStats } from '../transactions/SummaryStats';
-import { TransactionsChart } from '../transactions/TransactionsChart';
+import { SummaryStats } from '../transactions/components/SummaryStats';
 
 export const DashboardPage = () => {
   return (

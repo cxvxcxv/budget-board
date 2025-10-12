@@ -1,6 +1,7 @@
+import { COLORS } from '../../../constants/color.constants';
 import type { ITransaction } from '../../../types/transaction.types';
 
-export function getChartData(transactions: ITransaction[]) {
+export function getLineChartData(transactions: ITransaction[]) {
   const daily = new Map<string, { income: number; expense: number }>();
 
   transactions.forEach((t: ITransaction) => {
@@ -21,14 +22,14 @@ export function getChartData(transactions: ITransaction[]) {
       {
         label: 'Income',
         data: incomeData,
-        borderColor: 'rgba(74, 222, 128, 0.9)', // green-400
+        borderColor: COLORS.income,
         backgroundColor: 'rgba(74, 222, 128, 0.2)',
         tension: 0.4,
       },
       {
         label: 'Expense',
         data: expenseData,
-        borderColor: 'rgba(248, 113, 113, 0.9)', // red-400
+        borderColor: COLORS.expense,
         backgroundColor: 'rgba(248, 113, 113, 0.2)',
         tension: 0.4,
       },
