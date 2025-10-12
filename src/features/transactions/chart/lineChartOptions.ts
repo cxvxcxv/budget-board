@@ -1,4 +1,4 @@
-export const chartOptions = {
+export const lineChartOptions = {
   responsive: true,
   plugins: {
     legend: {

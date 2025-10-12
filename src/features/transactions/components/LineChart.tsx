@@ -12,8 +12,8 @@ import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import GlassCard from '../../../components/ui/GlassCard';
 import { useAppSelector } from '../../../hooks/useStore';
-import { chartOptions } from '../chart/chartOptions';
 import { getLineChartData } from '../chart/getLineChartData';
+import { lineChartOptions } from '../chart/lineChartOptions';
 
 ChartJS.register(
   CategoryScale,
@@ -35,7 +35,7 @@ export const TransactionsChart: React.FC = () => {
         Income vs Expense Overview
       </h2>
       <div>
-        <Line data={data} options={chartOptions} />
+        <Line data={data} options={lineChartOptions} />
       </div>
     </GlassCard>
   );
