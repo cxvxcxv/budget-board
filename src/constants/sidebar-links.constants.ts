@@ -1,6 +1,7 @@
 import { ArrowLeftRight, Home } from 'lucide-react';
+import type { ISidebarLink } from '../types/sidebar-link.types';
 
-export const sidebarLinks = [
+export const sidebarLinks: ISidebarLink[] = [
   { name: 'Dashboard', path: '/', icon: Home },
   {
     name: 'Transactions',
