@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { sidebarLinks } from '../../../constants/sidebar-links.constants';
 import { SidebarDropdown } from './SidebarDropdown';
-import { SidebarLink } from './SIdebarLink';
+import { SidebarLink } from './SidebarLink';
 
 type TSidebarProps = {
   isOpen: boolean;

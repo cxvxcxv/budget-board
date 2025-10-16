@@ -6,17 +6,14 @@ type TNavbarProps = {
 
 export const Navbar = ({ onMenuClick }: TNavbarProps) => {
   return (
-    <header className="flex items-center justify-between p-4 border-b border-white/10 bg-gray-900/60 backdrop-blur">
+    <header className="flex items-center justify-between border-b border-white/10 bg-gray-900/60 p-4 backdrop-blur lg:hidden">
       {/* mobile menu button */}
       <button
         onClick={onMenuClick}
-        className="p-2 rounded-md hover:bg-white/10 lg:hidden"
+        className="rounded-md p-2 hover:bg-white/10 lg:hidden"
       >
-        <Menu className="w-6 h-6 text-white" />
+        <Menu className="h-6 w-6 text-white" />
       </button>
-
-      <h1 className="text-lg font-semibold">Dashboard</h1>
-      <div>{/* user avatar, settings, etc. */}</div>
     </header>
   );
 };
