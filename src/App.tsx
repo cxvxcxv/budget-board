@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { DashboardPage } from './features/dashboard/DashboardPage';
+import { AllTransactions } from './features/transactions/AllTransactions';
 
 export const App = () => {
   return (
@@ -8,6 +9,9 @@ export const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/transactions">
+            <Route index element={<AllTransactions />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
