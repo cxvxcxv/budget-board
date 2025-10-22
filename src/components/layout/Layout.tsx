@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { ScrollToTop } from '../ScrollToTop';
 import { Navbar } from './Navbar';
 import { Sidebar } from './sidebar/Sidebar';
 
@@ -12,6 +13,7 @@ export const Layout = () => {
       <div className="flex flex-1 flex-col">
         <Navbar onMenuClick={() => setIsSidebarOpen(prev => !prev)} />
         <main className="flex-1 overflow-y-auto p-6">
+          <ScrollToTop />
           <Outlet />
         </main>
       </div>
