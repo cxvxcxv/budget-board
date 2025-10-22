@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import GlassCard from '../../../components/ui/GlassCard';
 import { useAppSelector } from '../../../hooks/useStore';
 import type { ITransaction } from '../../../types/transaction.types';
@@ -20,10 +21,16 @@ export const RecentTransactions: React.FC = () => {
 
   return (
     <GlassCard className="h-full overflow-x-hidden p-6">
-      <h2 className="mb-4 text-xl font-bold text-primary">
-        Recent Transactions
-      </h2>
-      <ul className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent space-y-3 overflow-y-auto md:max-h-64">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-xl font-bold text-primary">Recent Transactions</h2>
+        <Link
+          to={'/transactions'}
+          className="text-sm text-text-muted underline"
+        >
+          View all
+        </Link>
+      </div>
+      <ul className="space-y-3 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700 md:max-h-64">
         {recentTransactions.map((transaction: ITransaction) => (
           <li
             key={transaction.id}
