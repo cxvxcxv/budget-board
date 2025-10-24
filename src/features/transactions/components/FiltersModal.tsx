@@ -42,7 +42,41 @@ export const FiltersModal = ({ isOpen, onClose }: FiltersModalProps) => {
               Filters
             </h2>
 
-            <div className="text-gray-400">Filter options will go here.</div>
+            <section className="space-y-4">
+              <div>
+                <h3 className="text-text-dimmed">Date range</h3>
+                <div className="flex justify-between">
+                  <input type="date" className="rounded-md bg-white/10 p-2" />
+                  <input type="date" className="rounded-md bg-white/10 p-2" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-text-dimmed">Category</h3>
+                <select
+                  name="category"
+                  id="category-filter"
+                  className="rounded-md bg-white/10 p-2"
+                >
+                  {/* categories */}
+                  <option value="health">Health</option>
+                </select>
+              </div>
+              <div>
+                <h3 className="text-text-dimmed">Transaction type</h3>
+                <select
+                  name="transaction"
+                  id="transactionType-filter"
+                  className="rounded-md bg-white/10 p-2"
+                >
+                  <option value="expense">Expense</option>
+                  <option value="income">Income</option>
+                </select>
+              </div>
+              <div className="flex justify-between">
+                <button>Reset all</button>
+                <button>Apply</button>
+              </div>
+            </section>
           </DialogPanel>
         </div>
       </Dialog>
