@@ -4,15 +4,15 @@ import {
   DialogPanel,
   Transition,
 } from '@headlessui/react';
-import { X } from 'lucide-react';
+import { Calendar, ChevronDown, X } from 'lucide-react';
 import { Fragment } from 'react';
 
-interface FiltersModalProps {
+interface TFiltersModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const FiltersModal = ({ isOpen, onClose }: FiltersModalProps) => {
+export const FiltersModal = ({ isOpen, onClose }: TFiltersModalProps) => {
   return (
     <Transition show={isOpen} as={Fragment} appear>
       <Dialog
@@ -31,6 +31,7 @@ export const FiltersModal = ({ isOpen, onClose }: FiltersModalProps) => {
             transition
             className="relative w-full max-w-md rounded-2xl bg-gray-900 p-6 text-white shadow-lg transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
           >
+            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute right-3 top-3 rounded-full p-1 text-gray-400 hover:bg-white/10 hover:text-white"
@@ -42,39 +43,83 @@ export const FiltersModal = ({ isOpen, onClose }: FiltersModalProps) => {
               Filters
             </h2>
 
-            <section className="space-y-4">
+            <section className="space-y-6">
+              {/* date range */}
               <div>
-                <h3 className="text-text-dimmed">Date range</h3>
-                <div className="flex justify-between">
-                  <input type="date" className="rounded-md bg-white/10 p-2" />
-                  <input type="date" className="rounded-md bg-white/10 p-2" />
+                <h3 className="mb-2 text-sm text-gray-400">Date range</h3>
+                <div className="flex items-center gap-2">
+                  {['from', 'to'].map((label, i) => (
+                    <div key={i} className="relative flex-1">
+                      <input
+                        type="date"
+                        className="w-full rounded-md bg-white/10 p-2 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
+                        aria-label={label}
+                        name={label}
+                      />
+                      <Calendar
+                        size={16}
+                        className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div>
-                <h3 className="text-text-dimmed">Category</h3>
-                <select
-                  name="category"
-                  id="category-filter"
-                  className="rounded-md bg-white/10 p-2"
-                >
-                  {/* categories */}
-                  <option value="health">Health</option>
-                </select>
+
+              {/* Category */}
+              <div className="space-y-1">
+                <h3 className="text-sm text-gray-400">Category</h3>
+                <div className="relative">
+                  <select
+                    name="category"
+                    id="category-filter"
+                    className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <option className="bg-gray-800 text-white" value="">
+                      All categories
+                    </option>
+                    {/* map existing categories later */}
+                  </select>
+                  <ChevronDown
+                    size={16}
+                    className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+                </div>
               </div>
-              <div>
-                <h3 className="text-text-dimmed">Transaction type</h3>
-                <select
-                  name="transaction"
-                  id="transactionType-filter"
-                  className="rounded-md bg-white/10 p-2"
-                >
-                  <option value="expense">Expense</option>
-                  <option value="income">Income</option>
-                </select>
+
+              {/* Transaction type */}
+              <div className="space-y-2">
+                <h3 className="text-sm text-gray-400">Transaction type</h3>
+                <div className="relative">
+                  <select
+                    name="transactionType"
+                    id="transactionType-filter"
+                    className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <option className="bg-gray-800 text-white" value="">
+                      All
+                    </option>
+                    <option className="bg-gray-800 text-white" value="expense">
+                      Expense
+                    </option>
+                    <option className="bg-gray-800 text-white" value="income">
+                      Income
+                    </option>
+                  </select>
+                  <ChevronDown
+                    size={16}
+                    className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+                </div>
               </div>
-              <div className="flex justify-between">
-                <button>Reset all</button>
-                <button>Apply</button>
+
+              {/* Buttons */}
+              <div className="mt-4 flex justify-between">
+                <button className="rounded-md px-4 py-2 text-sm text-gray-400 hover:text-white hover:underline">
+                  Reset all
+                </button>
+                <button className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:opacity-90">
+                  Apply
+                </button>
               </div>
             </section>
           </DialogPanel>
