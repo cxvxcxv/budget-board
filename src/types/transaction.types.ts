@@ -7,3 +7,10 @@ export interface ITransaction {
   note?: string;
   date: string;
 }
+
+export interface ITransactionFiltersState {
+  startDate: string;
+  endDate: string;
+  category: string;
+  type: 'all' | 'expense' | 'income';
+}
