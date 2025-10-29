@@ -41,6 +41,7 @@ export const AllTransactions = () => {
 
       <FiltersModal
         isOpen={isFiltersOpen}
+        initialState={filters}
         onClose={() => setIsFiltersOpen(false)}
         onApply={setFilters}
       />

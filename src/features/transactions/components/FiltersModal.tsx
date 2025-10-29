@@ -11,17 +11,19 @@ import type { ITransactionFiltersState } from '../../../types/transaction.types'
 
 type TFiltersModalProps = {
   isOpen: boolean;
+  initialState: ITransactionFiltersState;
   onClose: () => void;
   onApply: (filters: ITransactionFiltersState) => void;
 };
 
 export const FiltersModal = ({
   isOpen,
+  initialState,
   onClose,
   onApply,
 }: TFiltersModalProps) => {
   const [filters, setFilters] =
-    useState<ITransactionFiltersState>(initialFiltersState);
+    useState<ITransactionFiltersState>(initialState);
 
   const handleChange = (key: keyof ITransactionFiltersState, value: string) => {
     setFilters(prev => ({ ...prev, [key]: value }));
@@ -84,6 +86,7 @@ export const FiltersModal = ({
                         aria-label={label}
                         name={label}
                         onChange={e => handleChange(label, e.target.value)}
+                        defaultValue={filters[label]}
                       />
                       <Calendar
                         size={16}
@@ -103,6 +106,7 @@ export const FiltersModal = ({
                     id="category-filter"
                     className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
                     onChange={e => handleChange('category', e.target.value)}
+                    defaultValue={filters.category}
                   >
                     <option className="bg-gray-800 text-white" value="">
                       All categories
@@ -125,6 +129,7 @@ export const FiltersModal = ({
                     id="transactionType-filter"
                     className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
                     onChange={e => handleChange('type', e.target.value)}
+                    defaultValue={filters.type}
                   >
                     <option className="bg-gray-800 text-white" value="all">
                       All
