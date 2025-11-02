@@ -2,6 +2,7 @@ import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
+  Select,
   Transition,
 } from '@headlessui/react';
 import { Calendar, ChevronDown, X } from 'lucide-react';
@@ -26,6 +27,7 @@ export const FiltersModal = ({
     useState<ITransactionFiltersState>(initialState);
 
   const handleChange = (key: keyof ITransactionFiltersState, value: string) => {
+    console.log(filters);
     setFilters(prev => ({ ...prev, [key]: value }));
   };
 
@@ -86,7 +88,7 @@ export const FiltersModal = ({
                         aria-label={label}
                         name={label}
                         onChange={e => handleChange(label, e.target.value)}
-                        defaultValue={filters[label]}
+                        value={filters[label]}
                       />
                       <Calendar
                         size={16}
@@ -101,18 +103,18 @@ export const FiltersModal = ({
               <div className="space-y-1">
                 <h3 className="text-sm text-gray-400">Category</h3>
                 <div className="relative">
-                  <select
+                  <Select
                     name="category"
                     id="category-filter"
                     className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
                     onChange={e => handleChange('category', e.target.value)}
-                    defaultValue={filters.category}
+                    value={filters.category}
                   >
                     <option className="bg-gray-800 text-white" value="">
                       All categories
                     </option>
                     {/* map existing categories later */}
-                  </select>
+                  </Select>
                   <ChevronDown
                     size={16}
                     className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
@@ -124,12 +126,12 @@ export const FiltersModal = ({
               <div className="space-y-2">
                 <h3 className="text-sm text-gray-400">Transaction type</h3>
                 <div className="relative">
-                  <select
+                  <Select
                     name="transactionType"
                     id="transactionType-filter"
                     className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
                     onChange={e => handleChange('type', e.target.value)}
-                    defaultValue={filters.type}
+                    value={filters.type}
                   >
                     <option className="bg-gray-800 text-white" value="all">
                       All
@@ -140,7 +142,7 @@ export const FiltersModal = ({
                     <option className="bg-gray-800 text-white" value="income">
                       Income
                     </option>
-                  </select>
+                  </Select>
                   <ChevronDown
                     size={16}
                     className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"

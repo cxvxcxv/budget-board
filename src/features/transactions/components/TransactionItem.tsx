@@ -3,14 +3,25 @@ import type { ITransaction } from '../../../types/transaction.types';
 
 type TTransactionItemProps = {
   transaction: ITransaction;
+  showDate?: boolean;
 };
 
-export const TransactionItem = ({ transaction }: TTransactionItemProps) => {
+export const TransactionItem = ({
+  transaction,
+  showDate = true,
+}: TTransactionItemProps) => {
   return (
     <div className="flex items-center justify-between px-4 py-3 transition hover:bg-white/10">
       <div className="flex flex-col">
-        <span className="font-medium">{transaction.title}</span>
-        <span className="text-sm text-gray-400">{transaction.category}</span>
+        <p className="font-medium">
+          {transaction.title}
+          {showDate && (
+            <span className="ml-2 text-xs font-thin text-text-dimmed">
+              ({transaction.date})
+            </span>
+          )}
+        </p>
+        <p className="text-sm text-gray-400">{transaction.category}</p>
       </div>
 
       <div
