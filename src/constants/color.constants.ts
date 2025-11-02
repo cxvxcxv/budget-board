@@ -9,6 +9,7 @@ export const COLORS = {
   'text-dimmed': 'rgba(255,255,255,0.5)',
   income: 'rgba(74, 222, 128, 0.8)',
   expense: 'rgba(248, 113, 113, 0.8)',
+  transparent: 'transparent',
 };
 
 export const expenseColors: Record<string, string> = {
