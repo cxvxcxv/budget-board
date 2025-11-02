@@ -14,3 +14,5 @@ export interface ITransactionFiltersState {
   category: string;
   type: 'all' | 'expense' | 'income';
 }
+
+export type TTransactionsSortState = 'date' | 'amount';
