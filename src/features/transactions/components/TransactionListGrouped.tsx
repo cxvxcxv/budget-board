@@ -1,19 +1,21 @@
+import { useMemo } from 'react';
 import type { ITransaction } from '../../../types/transaction.types';
 import { groupTransactionsByDate } from '../utils/groupTransactionsByDate';
 import { TransactionItem } from './TransactionItem';
 
-type TTransactionListGroupedProps = {
+type Props = {
   transactions: ITransaction[];
+  isReversed: boolean;
 };
 
-export const TransactionListGrouped = ({
-  transactions,
-}: TTransactionListGroupedProps) => {
-  const grouped = groupTransactionsByDate(transactions).sort(
-    ([a], [b]) => new Date(b).getTime() - new Date(a).getTime(),
+export const TransactionListGrouped = ({ transactions, isReversed }: Props) => {
+  const grouped = useMemo(
+    () => groupTransactionsByDate(transactions, isReversed),
+    [transactions, isReversed],
   );
 
-  if (!grouped.length) return <p>No transactions found</p>;
+  if (!grouped.length)
+    return <p className="text-gray-400">No transactions found.</p>;
 
   return (
     <>
