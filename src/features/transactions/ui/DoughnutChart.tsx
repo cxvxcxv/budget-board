@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import GlassCard from '../../../components/ui/GlassCard';
 import { useAppSelector } from '../../../hooks/useStore';
-import { doughnutChartOptions } from '../chart/doughnutChartOptions';
-import { getPieChartData } from '../chart/getDoughnutChartData';
+import { doughnutChartOptions } from '../config/doughnutChartOptions';
+import { getPieChartData } from '../lib/getDoughnutChartData';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -28,14 +28,14 @@ export default function DoughnutChart() {
       >
         <GlassCard className="absolute inset-0 flex flex-col items-center justify-between p-4 [backface-visibility:hidden]">
           <h3 className="text-lg font-semibold text-expense">Expenses</h3>
-          <div className="flex items-center justify-center flex-1 w-full">
+          <div className="flex w-full flex-1 items-center justify-center">
             <div className="h-44 w-44 sm:h-52 sm:w-52">
               <Doughnut data={expensesData} options={doughnutChartOptions} />
             </div>
           </div>
           <button
             onClick={handleFlip}
-            className="px-3 py-1 mt-3 text-sm transition rounded-lg bg-white/10 hover:bg-white/20"
+            className="mt-3 rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
           >
             Show Incomes
           </button>
@@ -43,14 +43,14 @@ export default function DoughnutChart() {
 
         <GlassCard className="absolute inset-0 flex flex-col items-center justify-between p-4 [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <h3 className="text-lg font-semibold text-income">Incomes</h3>
-          <div className="flex items-center justify-center flex-1 w-full">
+          <div className="flex w-full flex-1 items-center justify-center">
             <div className="h-44 w-44 sm:h-52 sm:w-52">
               <Doughnut data={incomesData} options={doughnutChartOptions} />
             </div>
           </div>
           <button
             onClick={handleFlip}
-            className="px-3 py-1 mt-3 text-sm transition rounded-lg bg-white/10 hover:bg-white/20"
+            className="mt-3 rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
           >
             Show Expenses
           </button>

@@ -12,8 +12,8 @@ import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import GlassCard from '../../../components/ui/GlassCard';
 import { useAppSelector } from '../../../hooks/useStore';
-import { getLineChartData } from '../chart/getLineChartData';
-import { lineChartOptions } from '../chart/lineChartOptions';
+import { lineChartOptions } from '../config/lineChartOptions';
+import { getLineChartData } from '../lib/getLineChartData';
 
 ChartJS.register(
   CategoryScale,

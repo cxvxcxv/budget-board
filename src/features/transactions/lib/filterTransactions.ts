@@ -1,7 +1,4 @@
-import type {
-  ITransaction,
-  ITransactionFiltersState,
-} from '../../../types/transaction.types';
+import type { ITransaction, ITransactionFiltersState } from '../model/types';
 
 export function filterTransactions(
   transactions: ITransaction[],

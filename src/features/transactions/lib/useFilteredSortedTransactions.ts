@@ -3,7 +3,7 @@ import type {
   ITransaction,
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '../../../types/transaction.types';
+} from '../model/types';
 import { filterTransactions } from './filterTransactions';
 import { sortTransactions } from './sortTransactions';
 

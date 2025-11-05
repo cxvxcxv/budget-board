@@ -1,5 +1,5 @@
 import { COLORS } from '../../../constants/color.constants';
-import type { ITransaction } from '../../../types/transaction.types';
+import type { ITransaction } from '../model/types';
 
 export function getLineChartData(transactions: ITransaction[]) {
   const daily = new Map<string, { income: number; expense: number }>();

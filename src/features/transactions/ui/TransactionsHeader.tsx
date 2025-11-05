@@ -6,7 +6,7 @@ import { initialFiltersState } from '../../../constants/transaction-filters.cons
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '../../../types/transaction.types';
+} from '../model/types';
 
 type Props = {
   sortBy: TTransactionsSortState;

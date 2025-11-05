@@ -8,7 +8,7 @@ import {
 import { Calendar, ChevronDown, X } from 'lucide-react';
 import { Fragment, useState } from 'react';
 import { initialFiltersState } from '../../../constants/transaction-filters.constants';
-import type { ITransactionFiltersState } from '../../../types/transaction.types';
+import type { ITransactionFiltersState } from '../model/types';
 
 type TFiltersModalProps = {
   isOpen: boolean;

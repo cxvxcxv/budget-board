@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { initialFiltersState } from '../../constants/transaction-filters.constants';
 import { useAppSelector } from '../../hooks/useStore';
+import { useFilteredSortedTransactions } from './lib/useFilteredSortedTransactions';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '../../types/transaction.types';
-import { FiltersModal } from './components/FiltersModal';
-import { TransactionListFlat } from './components/TransactionListFlat';
-import { TransactionListGrouped } from './components/TransactionListGrouped';
-import { TransactionsHeader } from './components/TransactionsHeader';
-import { useFilteredSortedTransactions } from './utils/useFilteredSortedTransactions';
+} from './model/types';
+import { FiltersModal } from './ui/FiltersModal';
+import { TransactionListFlat } from './ui/TransactionListFlat';
+import { TransactionListGrouped } from './ui/TransactionListGrouped';
+import { TransactionsHeader } from './ui/TransactionsHeader';
 
 export const AllTransactions = () => {
   const transactions = useAppSelector(state => state.transactions.list);

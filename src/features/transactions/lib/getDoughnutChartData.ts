@@ -2,7 +2,7 @@ import {
   expenseColors,
   incomeColors,
 } from '../../../constants/color.constants';
-import type { ITransaction } from '../../../types/transaction.types';
+import type { ITransaction } from '../model/types';
 
 export function getPieChartData(
   transactions: ITransaction[],
