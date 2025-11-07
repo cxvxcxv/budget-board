@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import type { ISidebarLink } from '../../../types/sidebar-link.types';
+import type { ISidebarLink } from '../../../entities/sidebar-link.types';
 
 type TSidebarDropdownProps = {
   link: ISidebarLink;

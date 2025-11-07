@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { STORAGE_KEYS } from '../../../constants/storage-keys.constants';
-import { loadFromLocalStorage } from '../../../utils/localStorage';
 import type { ITransaction } from './types';
+import { STORAGE_KEYS } from '@/shared/config/storage-keys.constants';
+import { loadFromLocalStorage } from '@/shared/lib/localStorage';
 
 interface ITransactionsState {
   list: ITransaction[];

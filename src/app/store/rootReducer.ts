@@ -1,6 +1,6 @@
 // src/store/rootReducer.ts
 import { combineReducers } from '@reduxjs/toolkit';
-import transactionsReducer from '../features/transactions/transactionsSlice';
+import transactionsReducer from '@/features/transactions/model/transactionsSlice';
 
 const rootReducer = combineReducers({
   transactions: transactionsReducer,

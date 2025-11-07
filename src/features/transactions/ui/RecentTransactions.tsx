@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GlassCard from '../../../components/ui/GlassCard';
-import { useAppSelector } from '../../../hooks/useStore';
-import type { ITransaction } from '../model/types';
+import type { ITransaction } from '@/features/transactions';
+import { useAppSelector } from '@/shared/hooks/useStore';
+import { GlassCard } from '@/shared/ui';
 
 export const RecentTransactions: React.FC = () => {
-  const transactions = useAppSelector(state => state.transactions.list);
+  const transactions: ITransaction[] = useAppSelector(
+    state => state.transactions.list,
+  );
 
   const recentTransactions = [...transactions]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

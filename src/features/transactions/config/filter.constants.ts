@@ -1,4 +1,4 @@
-import type { ITransactionFiltersState } from '../types/transaction.types';
+import type { ITransactionFiltersState } from '../model';
 
 export const initialFiltersState: ITransactionFiltersState = {
   startDate: '',

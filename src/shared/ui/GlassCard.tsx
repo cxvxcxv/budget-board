@@ -5,7 +5,7 @@ interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-const GlassCard: React.FC<GlassCardProps> = ({
+export const GlassCard: React.FC<GlassCardProps> = ({
   children,
   className = '',
   ...rest
@@ -19,5 +19,3 @@ const GlassCard: React.FC<GlassCardProps> = ({
     </div>
   );
 };
-
-export default GlassCard;

@@ -1,10 +1,12 @@
 import React, { useMemo } from 'react';
-import GlassCard from '../../../components/ui/GlassCard';
-import { useAppSelector } from '../../../hooks/useStore';
-import type { ITransaction } from '../model/types';
+import type { ITransaction } from '@/features/transactions';
+import { useAppSelector } from '@/shared/hooks/useStore';
+import { GlassCard } from '@/shared/ui';
 
 export const SummaryStats: React.FC = () => {
-  const transactions = useAppSelector(state => state.transactions.list);
+  const transactions: ITransaction[] = useAppSelector(
+    state => state.transactions.list,
+  );
 
   const { income, expense, balance } = useMemo(() => {
     const income = transactions

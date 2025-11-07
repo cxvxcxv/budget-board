@@ -10,10 +10,9 @@ import {
 } from 'chart.js';
 import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
-import GlassCard from '../../../components/ui/GlassCard';
-import { useAppSelector } from '../../../hooks/useStore';
-import { lineChartOptions } from '../config/lineChartOptions';
-import { getLineChartData } from '../lib/getLineChartData';
+import { getLineChartData, lineChartOptions } from '@/features/transactions';
+import { useAppSelector } from '@/shared/hooks/useStore';
+import { GlassCard } from '@/shared/ui';
 
 ChartJS.register(
   CategoryScale,

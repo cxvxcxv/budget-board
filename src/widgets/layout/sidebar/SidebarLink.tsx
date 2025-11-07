@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import type { ISidebarLink } from '../../../types/sidebar-link.types';
+import type { ISidebarLink } from '../../../entities/sidebar-link.types';
 
 type TSidebarLinkProps = {
   link: Extract<ISidebarLink, { path: string }>; //make sure the link has path

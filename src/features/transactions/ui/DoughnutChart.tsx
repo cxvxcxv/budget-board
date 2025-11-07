@@ -2,14 +2,13 @@ import { ArcElement, Chart, Legend, Tooltip } from 'chart.js';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import GlassCard from '../../../components/ui/GlassCard';
-import { useAppSelector } from '../../../hooks/useStore';
-import { doughnutChartOptions } from '../config/doughnutChartOptions';
-import { getPieChartData } from '../lib/getDoughnutChartData';
+import { doughnutChartOptions, getPieChartData } from '@/features/transactions';
+import { useAppSelector } from '@/shared/hooks/useStore';
+import { GlassCard } from '@/shared/ui';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-export default function DoughnutChart() {
+export const DoughnutChart = () => {
   const [flipped, setFlipped] = useState(false);
   const transactions = useAppSelector(state => state.transactions.list);
 
@@ -58,4 +57,4 @@ export default function DoughnutChart() {
       </div>
     </div>
   );
-}
+};

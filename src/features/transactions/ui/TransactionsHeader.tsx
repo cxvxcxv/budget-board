@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { ArrowUpDown, Settings2 } from 'lucide-react';
-import { Option } from '../../../components/ui/Option';
-import { Select } from '../../../components/ui/Select';
-import { initialFiltersState } from '../../../constants/transaction-filters.constants';
+import { Option } from '../../../shared/ui/Option';
+import { Select } from '../../../shared/ui/Select';
+import { initialFiltersState } from '../config';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
