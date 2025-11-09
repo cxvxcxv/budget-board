@@ -2,14 +2,14 @@ import { useState } from 'react';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '@/features/transactions';
+} from '@/entities/transaction.types';
 import {
   FiltersModal,
   initialFiltersState,
   TransactionListFlat,
   TransactionListGrouped,
   TransactionsHeader,
-  useFilteredSortedTransactions,
+  useProcessedTransactions,
 } from '@/features/transactions';
 import { useAppSelector } from '@/shared/hooks/useStore';
 
@@ -21,11 +21,13 @@ export const Transactions = () => {
   const [sortBy, setSortBy] = useState<TTransactionsSortState>('date');
   const [isReversed, setIsReversed] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const finalTransactions = useFilteredSortedTransactions(
+  const finalTransactions = useProcessedTransactions(
     transactions,
     filters,
     sortBy,
+    searchTerm,
     isReversed,
   );
 
@@ -37,6 +39,8 @@ export const Transactions = () => {
         setIsReversed={setIsReversed}
         filters={filters}
         onOpenFilters={() => setIsFiltersOpen(true)}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
 
       {sortBy === 'date' ? (

@@ -7,7 +7,7 @@ import {
 } from '@headlessui/react';
 import { Calendar, ChevronDown, X } from 'lucide-react';
 import { Fragment, useState } from 'react';
-import type { ITransactionFiltersState } from '@/features/transactions';
+import type { ITransactionFiltersState } from '@/entities/transaction.types';
 import { initialFiltersState } from '@/features/transactions';
 
 type TFiltersModalProps = {

@@ -1,4 +1,4 @@
-import type { ITransaction } from '../model/types';
+import type { ITransaction } from '../../../entities/transaction.types';
 import { TransactionItem } from './TransactionItem';
 
 type Props = { transactions: ITransaction[] };

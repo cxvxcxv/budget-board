@@ -1,4 +1,7 @@
-import type { ITransaction, TTransactionsSortState } from '../model/types';
+import type {
+  ITransaction,
+  TTransactionsSortState,
+} from '../../../entities/transaction.types';
 
 export const sortTransactions = (
   transactions: ITransaction[],

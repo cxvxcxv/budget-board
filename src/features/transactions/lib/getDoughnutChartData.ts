@@ -1,4 +1,4 @@
-import type { ITransaction } from '../model/types';
+import type { ITransaction } from '../../../entities/transaction.types';
 import { expenseColors, incomeColors } from '@/shared/config/color.constants';
 
 export function getPieChartData(

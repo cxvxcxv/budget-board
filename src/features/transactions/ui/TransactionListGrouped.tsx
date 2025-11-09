@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
+import type { ITransaction } from '../../../entities/transaction.types';
 import { groupTransactionsByDate } from '../lib/groupTransactionsByDate';
-import type { ITransaction } from '../model/types';
 import { TransactionItem } from './TransactionItem';
 
 type Props = {

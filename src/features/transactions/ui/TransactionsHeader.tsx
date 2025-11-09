@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { ArrowUpDown, Settings2 } from 'lucide-react';
-import { Option } from '../../../shared/ui/Option';
-import { Select } from '../../../shared/ui/Select';
-import { initialFiltersState } from '../config';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '../model/types';
+} from '@/entities/transaction.types';
+import { initialFiltersState } from '@/features/transactions/config';
+import { Option, Select } from '@/shared/ui';
+import { Field } from '@/shared/ui/Field';
 
 type Props = {
   sortBy: TTransactionsSortState;
@@ -14,6 +14,8 @@ type Props = {
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
   filters: ITransactionFiltersState;
   onOpenFilters: () => void;
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const TransactionsHeader = ({
@@ -22,12 +24,20 @@ export const TransactionsHeader = ({
   setIsReversed,
   filters,
   onOpenFilters,
+  searchTerm,
+  setSearchTerm,
 }: Props) => {
   const isDefaultFilters =
     JSON.stringify(filters) === JSON.stringify(initialFiltersState);
 
   return (
     <div className="flex items-center gap-3">
+      <Field
+        name="search"
+        placeholder="Search transaction"
+        onChange={e => setSearchTerm(e.target.value)}
+        value={searchTerm}
+      />
       <Select
         name="sort-transactions"
         className="bg-transparent"

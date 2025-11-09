@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { ITransaction } from '../model/types';
+import type { ITransaction } from '../../../entities/transaction.types';
 
 type TTransactionItemProps = {
   transaction: ITransaction;
