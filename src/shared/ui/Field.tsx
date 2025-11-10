@@ -14,7 +14,7 @@ export const Field = ({
   ...props
 }: TFieldProps) => {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex w-full flex-col gap-1">
       {label && (
         <label htmlFor={id} className="text-sm text-gray-400">
           {label}

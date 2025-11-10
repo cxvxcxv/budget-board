@@ -31,41 +31,43 @@ export const TransactionsHeader = ({
     JSON.stringify(filters) === JSON.stringify(initialFiltersState);
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
       <Field
         name="search"
-        placeholder="Search transaction"
+        placeholder="Search transactions"
         onChange={e => setSearchTerm(e.target.value)}
         value={searchTerm}
       />
-      <Select
-        name="sort-transactions"
-        className="bg-transparent"
-        value={sortBy}
-        onChange={e => setSortBy(e.target.value as TTransactionsSortState)}
-      >
-        <Option value="date">Date</Option>
-        <Option value="amount">Amount</Option>
-      </Select>
+      <div className="flex w-1/3">
+        <Select
+          name="sort-transactions"
+          className="bg-transparent"
+          value={sortBy}
+          onChange={e => setSortBy(e.target.value as TTransactionsSortState)}
+        >
+          <Option value="date">Date</Option>
+          <Option value="amount">Amount</Option>
+        </Select>
 
-      <button
-        onClick={() => setIsReversed(p => !p)}
-        title="Reverse order"
-        className="rounded-md p-2 text-gray-300 transition hover:bg-white/10 hover:text-white"
-      >
-        <ArrowUpDown strokeWidth={1.5} size={18} />
-      </button>
+        <button
+          onClick={() => setIsReversed(p => !p)}
+          title="Reverse order"
+          className="rounded-md p-2 text-gray-300 transition hover:bg-white/10 hover:text-white"
+        >
+          <ArrowUpDown strokeWidth={1.5} size={18} />
+        </button>
 
-      <button
-        onClick={onOpenFilters}
-        className={clsx(
-          'flex items-center gap-2 rounded-md border p-2 text-sm transition hover:border-primary',
-          { 'border-primary': !isDefaultFilters },
-        )}
-      >
-        <Settings2 strokeWidth={1.5} size={18} />
-        Filter
-      </button>
+        <button
+          onClick={onOpenFilters}
+          className={clsx(
+            'flex items-center gap-2 rounded-md border p-2 text-sm transition hover:border-primary',
+            { 'border-primary': !isDefaultFilters },
+          )}
+        >
+          <Settings2 strokeWidth={1.5} size={18} />
+          Filter
+        </button>
+      </div>
     </div>
   );
 };
