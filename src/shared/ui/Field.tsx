@@ -4,6 +4,7 @@ import type { InputHTMLAttributes } from 'react';
 type TFieldProps = {
   name: string;
   label?: string;
+  outerClassname?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Field = ({
@@ -11,10 +12,11 @@ export const Field = ({
   label,
   id,
   className,
+  outerClassname,
   ...props
 }: TFieldProps) => {
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className={clsx('flex w-full flex-col gap-1', outerClassname)}>
       {label && (
         <label htmlFor={id} className="text-sm text-gray-400">
           {label}
