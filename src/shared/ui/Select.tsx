@@ -5,18 +5,18 @@ import type { ReactNode, SelectHTMLAttributes } from 'react';
 type TSelectProps = {
   label?: string;
   children: ReactNode;
-  outerClassname?: string;
+  containerClassName?: string;
 } & SelectHTMLAttributes<HTMLSelectElement>;
 
 export const Select = ({
   label,
   children,
   className,
-  outerClassname,
+  containerClassName,
   ...props
 }: TSelectProps) => {
   return (
-    <div className={clsx('flex flex-col gap-1', outerClassname)}>
+    <div className={clsx('flex flex-col gap-1', containerClassName)}>
       {label && <span className="text-sm text-gray-400">{label}</span>}
 
       <div className="relative">
