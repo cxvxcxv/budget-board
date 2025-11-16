@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    @apply appearance-none;
+  }
+}
+
 .perspective {
   perspective: 1000px;
 }
@@ -18,4 +25,9 @@ input[type='date']::-webkit-calendar-picker-indicator {
 input[type='date']::-webkit-inner-spin-button,
 input[type='date']::-webkit-clear-button {
   display: none;
+}
+
+input {
+  field-sizing: content;
+  resize: none;
 }

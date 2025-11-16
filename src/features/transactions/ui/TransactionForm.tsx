@@ -17,43 +17,35 @@ export const TransactionForm = () => {
         step={0.01}
         className="m-auto block max-w-full border-b bg-transparent p-2 text-center outline-none hover:border-b-primary focus:border-b-primary"
       />
-
       {/* type toggle */}
       <div className="flex gap-4">
         <Button
-          state={type === 'expense' ? 'active' : 'inactive'}
           onClick={() => setType('expense')}
-          className={clsx('hover:border-expense', {
-            'bg-expense text-white': type === 'expense',
+          className={clsx('border', {
+            'border-expense bg-expense text-white': type === 'expense',
+            'hover:border-expense hover:text-expense': type !== 'expense',
           })}
         >
           Expense
         </Button>
         <Button
-          state={type === 'income' ? 'active' : 'inactive'}
           onClick={() => setType('income')}
-          className={clsx('hover:border-income', {
-            'bg-income text-white': type === 'income',
+          className={clsx('border', {
+            'border-income bg-income text-white': type === 'income',
+            'hover:border-income hover:text-income': type !== 'income',
           })}
         >
           Income
         </Button>
       </div>
-
       <Field name="title" placeholder="Title" />
-
       <Select label="Category" name="category" className="">
         <Option>Health</Option>
         <Option>Games</Option>
       </Select>
-
       <Textarea name="note" placeholder="Note... (Optional)" className="" />
-
       <div className="flex justify-end">
-        <Button
-          state="active"
-          className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600"
-        >
+        <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600">
           Add Transaction
         </Button>
       </div>

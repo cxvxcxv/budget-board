@@ -4,9 +4,8 @@ import type {
   ITransactionFiltersState,
   TTransactionsSortState,
 } from '@/entities/transaction.types';
-import { initialFiltersState } from '@/features/transactions/config';
-import { Option, Select } from '@/shared/ui';
-import { Field } from '@/shared/ui/Field';
+import { initialFiltersState } from '@/features/transactions';
+import { Button, Field, Option, Select } from '@/shared/ui';
 
 type Props = {
   sortBy: TTransactionsSortState;
@@ -37,12 +36,12 @@ export const TransactionsHeader = ({
         placeholder="Search transactions"
         onChange={e => setSearchTerm(e.target.value)}
         value={searchTerm}
-        outerClassname="md:flex-[2]"
+        containerClassName="md:flex-[2]"
       />
       <div className="flex w-full gap-2 md:flex-1 md:justify-end">
         <Select
           name="sort-transactions"
-          outerClassname="flex-1"
+          containerClassName="flex-1"
           className="bg-transparent"
           value={sortBy}
           onChange={e => setSortBy(e.target.value as TTransactionsSortState)}
@@ -59,16 +58,15 @@ export const TransactionsHeader = ({
           <ArrowUpDown strokeWidth={1.5} size={18} />
         </button>
 
-        <button
+        <Button
           onClick={onOpenFilters}
-          className={clsx(
-            'flex flex-1 items-center justify-center gap-2 rounded-md border p-2 text-sm transition hover:border-primary',
-            { 'border-primary': !isDefaultFilters },
-          )}
+          className={clsx('hover:border-primary', {
+            'border-primary': !isDefaultFilters,
+          })}
         >
           <Settings2 strokeWidth={1.5} size={18} />
           Filter
-        </button>
+        </Button>
       </div>
     </div>
   );

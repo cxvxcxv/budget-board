@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import {
+  AddTransactionModal,
   DoughnutChart,
   LineChart,
   RecentTransactions,
@@ -6,6 +8,7 @@ import {
 } from '@/features/transactions';
 
 export const Dashboard = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="grid gap-8">
       <SummaryStats />
@@ -14,6 +17,8 @@ export const Dashboard = () => {
         <RecentTransactions />
         <DoughnutChart />
       </div>
+      <button onClick={() => setIsOpen(true)}>add transaction</button>
+      <AddTransactionModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };

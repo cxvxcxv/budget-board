@@ -22,7 +22,6 @@ export const FiltersModal = ({
     useState<ITransactionFiltersState>(initialState);
 
   const handleChange = (key: keyof ITransactionFiltersState, value: string) => {
-    console.log(filters);
     setFilters(prev => ({ ...prev, [key]: value }));
   };
 
