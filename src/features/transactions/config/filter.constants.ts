@@ -1,6 +1,6 @@
-import type { ITransactionFiltersState } from '../model';
+import type { ITransactionFiltersState } from '@/entities';
 
-export const initialFiltersState: ITransactionFiltersState = {
+export const FILTERS_INITIAL_STATE: ITransactionFiltersState = {
   startDate: '',
   endDate: '',
   category: '',

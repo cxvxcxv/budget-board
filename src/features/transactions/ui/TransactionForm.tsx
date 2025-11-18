@@ -1,51 +1,103 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import { Button, Field, Option, Select, Textarea } from '@/shared/ui';
+import type { ICreateTransactionPayload } from '@/entities';
+import {
+  addTransaction,
+  createTransaction,
+  TRANSACTION_FORM_INITIAL_STATE,
+} from '@/features/transactions/';
+import { useAppDispatch } from '@/shared/hooks';
+import {
+  Button,
+  DateInput,
+  Field,
+  Option,
+  Select,
+  Textarea,
+} from '@/shared/ui';
 
-export const TransactionForm = () => {
-  const [type, setType] = useState<'expense' | 'income'>('expense');
+type TTransactionFormProps = {
+  onClose: () => void;
+};
+
+export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
+  const dispatch = useAppDispatch();
+
+  const [data, setData] = useState<ICreateTransactionPayload>(
+    TRANSACTION_FORM_INITIAL_STATE,
+  );
+
+  const handleSubmit = () => {
+    try {
+      const transaction = createTransaction(data);
+      dispatch(addTransaction(transaction));
+      onClose();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
-    <form
-      className="space-y-4 rounded-2xl bg-gray-800 p-4 shadow-md"
-      onSubmit={e => e.preventDefault()}
-    >
+    <form className="space-y-4 rounded-2xl" onSubmit={e => e.preventDefault()}>
       <input
         name="amount"
         type="number"
         placeholder="0.00"
         step={0.01}
-        className="m-auto block max-w-full border-b bg-transparent p-2 text-center outline-none hover:border-b-primary focus:border-b-primary"
+        className="block max-w-full p-2 m-auto text-xl text-center bg-transparent border-b outline-none border-border hover:border-b-primary focus:border-b-primary"
+        onChange={e => setData({ ...data, amount: +e.target.value })}
       />
       {/* type toggle */}
       <div className="flex gap-4">
         <Button
-          onClick={() => setType('expense')}
+          onClick={() => setData({ ...data, type: 'expense' })}
           className={clsx('border', {
-            'border-expense bg-expense text-white': type === 'expense',
-            'hover:border-expense hover:text-expense': type !== 'expense',
+            'border-expense bg-expense text-white': data.type === 'expense',
+            'hover:border-expense hover:text-expense': data.type !== 'expense',
           })}
         >
           Expense
         </Button>
         <Button
-          onClick={() => setType('income')}
+          onClick={() => setData({ ...data, type: 'income' })}
           className={clsx('border', {
-            'border-income bg-income text-white': type === 'income',
-            'hover:border-income hover:text-income': type !== 'income',
+            'border-income bg-income text-white': data.type === 'income',
+            'hover:border-income hover:text-income': data.type !== 'income',
           })}
         >
           Income
         </Button>
       </div>
-      <Field name="title" placeholder="Title" />
-      <Select label="Category" name="category" className="">
+      <Field
+        name="title"
+        placeholder="Title"
+        onChange={e => setData({ ...data, title: e.target.value })}
+      />
+      <Select
+        name="category"
+        onChange={e => setData({ ...data, category: e.target.value })}
+      >
         <Option>Health</Option>
         <Option>Games</Option>
       </Select>
-      <Textarea name="note" placeholder="Note... (Optional)" className="" />
+
+      <DateInput
+        name="date"
+        value={data.date}
+        onChange={e => setData({ ...data, date: e.target.value })}
+      />
+
+      <Textarea
+        name="note"
+        placeholder="Note... (Optional)"
+        rows={3}
+        onChange={e => setData({ ...data, note: e.target.value })}
+      />
       <div className="flex justify-end">
-        <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600">
+        <Button
+          className="px-6 py-2 rounded-xl bg-primary hover:bg-indigo-600"
+          onClick={handleSubmit}
+        >
           Add Transaction
         </Button>
       </div>

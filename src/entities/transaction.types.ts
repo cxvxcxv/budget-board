@@ -16,3 +16,12 @@ export interface ITransactionFiltersState {
 }
 
 export type TTransactionsSortState = 'date' | 'amount';
+
+export interface ICreateTransactionPayload {
+  title: string;
+  type: 'income' | 'expense';
+  amount: number;
+  category: string;
+  note?: string;
+  date: string;
+}

@@ -1,3 +1,4 @@
 export const STORAGE_KEYS = {
-  TRANSACTIONS: 'budget_board_transactions',
+  TRANSACTIONS: 'transactions',
+  CATEGORIES: 'categories',
 } as const;

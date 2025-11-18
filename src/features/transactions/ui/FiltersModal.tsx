@@ -1,25 +1,26 @@
 import { Select } from '@headlessui/react';
 import { Calendar, ChevronDown } from 'lucide-react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import type { ITransactionFiltersState } from '@/entities/transaction.types';
-import { initialFiltersState } from '@/features/transactions';
+import { FILTERS_INITIAL_STATE } from '@/features/transactions';
+import { Field } from '@/shared/ui';
 import { Modal } from '@/shared/ui/Modal';
 
 type TFiltersModalProps = {
   isOpen: boolean;
-  initialState: ITransactionFiltersState;
   onClose: () => void;
-  onApply: (filters: ITransactionFiltersState) => void;
+  onApply: Dispatch<SetStateAction<ITransactionFiltersState>>;
 };
 
 export const FiltersModal = ({
   isOpen,
-  initialState,
   onClose,
   onApply,
 }: TFiltersModalProps) => {
-  const [filters, setFilters] =
-    useState<ITransactionFiltersState>(initialState);
+  const [filters, setFilters] = useState<ITransactionFiltersState>(
+    FILTERS_INITIAL_STATE,
+  );
 
   const handleChange = (key: keyof ITransactionFiltersState, value: string) => {
     setFilters(prev => ({ ...prev, [key]: value }));
@@ -31,7 +32,7 @@ export const FiltersModal = ({
   };
 
   const handleReset = () => {
-    setFilters(initialFiltersState);
+    setFilters(FILTERS_INITIAL_STATE);
   };
 
   return (
@@ -45,9 +46,9 @@ export const FiltersModal = ({
               ['startDate', 'endDate'] as (keyof ITransactionFiltersState)[]
             ).map((label, i) => (
               <div key={i} className="relative flex-1">
-                <input
+                <Field
                   type="date"
-                  className="w-full rounded-md bg-white/10 p-2 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
+                  className="bg-white/10"
                   aria-label={label}
                   name={label}
                   onChange={e => handleChange(label, e.target.value)}
@@ -55,7 +56,7 @@ export const FiltersModal = ({
                 />
                 <Calendar
                   size={16}
-                  className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+                  className="absolute text-gray-400 -translate-y-1/2 pointer-events-none right-2 top-1/2"
                 />
               </div>
             ))}
@@ -69,18 +70,18 @@ export const FiltersModal = ({
             <Select
               name="category"
               id="category-filter"
-              className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
+              className="w-full p-2 pr-8 text-sm text-white rounded-md outline-none appearance-none bg-white/10 focus:ring-2 focus:ring-primary"
               onChange={e => handleChange('category', e.target.value)}
               value={filters.category}
             >
-              <option className="bg-gray-800 text-white" value="">
+              <option className="text-white bg-gray-800" value="">
                 All categories
               </option>
               {/* map existing categories later */}
             </Select>
             <ChevronDown
               size={16}
-              className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+              className="absolute text-gray-400 -translate-y-1/2 pointer-events-none right-2 top-1/2"
             />
           </div>
         </div>
@@ -92,37 +93,37 @@ export const FiltersModal = ({
             <Select
               name="transactionType"
               id="transactionType-filter"
-              className="w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary"
+              className="w-full p-2 pr-8 text-sm text-white rounded-md outline-none appearance-none bg-white/10 focus:ring-2 focus:ring-primary"
               onChange={e => handleChange('type', e.target.value)}
               value={filters.type}
             >
-              <option className="bg-gray-800 text-white" value="all">
+              <option className="text-white bg-gray-800" value="all">
                 All
               </option>
-              <option className="bg-gray-800 text-white" value="expense">
+              <option className="text-white bg-gray-800" value="expense">
                 Expense
               </option>
-              <option className="bg-gray-800 text-white" value="income">
+              <option className="text-white bg-gray-800" value="income">
                 Income
               </option>
             </Select>
             <ChevronDown
               size={16}
-              className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+              className="absolute text-gray-400 -translate-y-1/2 pointer-events-none right-2 top-1/2"
             />
           </div>
         </div>
 
         {/* Buttons */}
-        <div className="mt-4 flex justify-between">
+        <div className="flex justify-between mt-4">
           <button
-            className="rounded-md px-4 py-2 text-sm text-gray-400 hover:text-white hover:underline"
+            className="px-4 py-2 text-sm text-gray-400 rounded-md hover:text-white hover:underline"
             onClick={handleReset}
           >
             Reset all
           </button>
           <button
-            className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+            className="px-4 py-2 text-sm font-semibold text-white rounded-md bg-primary hover:opacity-90"
             onClick={handleApply}
           >
             Apply

@@ -4,8 +4,8 @@ import type {
   TTransactionsSortState,
 } from '@/entities/transaction.types';
 import {
+  FILTERS_INITIAL_STATE,
   FiltersModal,
-  initialFiltersState,
   TransactionListFlat,
   TransactionListGrouped,
   TransactionsHeader,
@@ -16,8 +16,9 @@ import { useAppSelector } from '@/shared/hooks/useStore';
 export const Transactions = () => {
   const transactions = useAppSelector(state => state.transactions.list);
 
-  const [filters, setFilters] =
-    useState<ITransactionFiltersState>(initialFiltersState);
+  const [filters, setFilters] = useState<ITransactionFiltersState>(
+    FILTERS_INITIAL_STATE,
+  );
   const [sortBy, setSortBy] = useState<TTransactionsSortState>('date');
   const [isReversed, setIsReversed] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -54,7 +55,6 @@ export const Transactions = () => {
 
       <FiltersModal
         isOpen={isFiltersOpen}
-        initialState={filters}
         onClose={() => setIsFiltersOpen(false)}
         onApply={setFilters}
       />

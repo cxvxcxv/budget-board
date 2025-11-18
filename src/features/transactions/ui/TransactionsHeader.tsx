@@ -1,20 +1,21 @@
 import clsx from 'clsx';
 import { ArrowUpDown, Settings2 } from 'lucide-react';
+import type { Dispatch, SetStateAction } from 'react';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
 } from '@/entities/transaction.types';
-import { initialFiltersState } from '@/features/transactions';
+import { FILTERS_INITIAL_STATE } from '@/features/transactions';
 import { Button, Field, Option, Select } from '@/shared/ui';
 
 type Props = {
   sortBy: TTransactionsSortState;
   setSortBy: (val: TTransactionsSortState) => void;
-  setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsReversed: Dispatch<SetStateAction<boolean>>;
   filters: ITransactionFiltersState;
   onOpenFilters: () => void;
   searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
 };
 
 export const TransactionsHeader = ({
@@ -27,7 +28,7 @@ export const TransactionsHeader = ({
   setSearchTerm,
 }: Props) => {
   const isDefaultFilters =
-    JSON.stringify(filters) === JSON.stringify(initialFiltersState);
+    JSON.stringify(filters) === JSON.stringify(FILTERS_INITIAL_STATE);
 
   return (
     <div className="flex flex-col-reverse items-center justify-between gap-4 md:flex-row">
@@ -53,14 +54,14 @@ export const TransactionsHeader = ({
         <button
           onClick={() => setIsReversed(p => !p)}
           title="Reverse order"
-          className="flex items-center justify-center rounded-md p-2 text-gray-300 transition hover:bg-white/10 hover:text-white"
+          className="flex items-center justify-center p-2 text-gray-300 transition rounded-md hover:bg-white/10 hover:text-white"
         >
           <ArrowUpDown strokeWidth={1.5} size={18} />
         </button>
 
         <Button
           onClick={onOpenFilters}
-          className={clsx('hover:border-primary', {
+          className={clsx('border hover:border-primary', {
             'border-primary': !isDefaultFilters,
           })}
         >

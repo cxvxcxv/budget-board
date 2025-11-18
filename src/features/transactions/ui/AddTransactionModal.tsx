@@ -10,11 +10,9 @@ export const AddTransactionModal = ({
   isOpen,
   onClose,
 }: TAddTransactionModalProps) => {
-  // const dispatch = useAppDispatch();
-
   return (
     <Modal title="Add Transaction" show={isOpen} onClose={onClose}>
-      <TransactionForm />
+      <TransactionForm onClose={onClose} />
     </Modal>
   );
 };

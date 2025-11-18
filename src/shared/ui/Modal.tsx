@@ -32,19 +32,20 @@ export const Modal = ({ show, onClose, title, children }: TModalProps) => {
           <DialogPanel
             aria-labelledby={title}
             transition
-            className="relative w-full max-w-md rounded-2xl bg-gray-900 p-6 text-white shadow-lg transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+            className="w-full max-w-md rounded-2xl bg-gray-900 p-6 pt-0 text-white shadow-lg transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
           >
-            {/* close modal button */}
-            <button
-              onClick={onClose}
-              className="absolute right-3 top-3 rounded-full p-1 text-gray-400 hover:bg-white/10 hover:text-white"
-            >
-              <X size={20} />
-            </button>
-
-            <h2 id="filters-title" className="mb-4 text-lg font-semibold">
-              {title}
-            </h2>
+            <div className="flex items-center p-4 mb-4 -mx-6 border-b border-border">
+              <h2 id="filters-title" className="flex-1 text-lg font-semibold">
+                {title}
+              </h2>
+              {/* close modal button */}
+              <button
+                onClick={onClose}
+                className="p-1 text-gray-400 rounded-full hover:bg-white/10 hover:text-white"
+              >
+                <X size={20} />
+              </button>
+            </div>
             {children}
           </DialogPanel>
         </div>

@@ -23,7 +23,7 @@ export const Select = ({
         <select
           {...props}
           className={clsx(
-            'w-full appearance-none rounded-md bg-white/10 p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary',
+            'w-full appearance-none rounded-md border border-border bg-transparent p-2 pr-8 text-sm text-white outline-none focus:ring-2 focus:ring-primary',
             className,
           )}
         >
@@ -32,7 +32,7 @@ export const Select = ({
 
         <ChevronDown
           size={16}
-          className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+          className="absolute text-gray-400 -translate-y-1/2 pointer-events-none right-2 top-1/2"
         />
       </div>
     </div>
