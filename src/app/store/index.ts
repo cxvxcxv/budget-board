@@ -7,10 +7,11 @@ export const store = configureStore({
   reducer: rootReducer,
 });
 
-//save transactions to localStorage whenever they change
+//save to localStorage whenever they change
 store.subscribe(() => {
   const state = store.getState();
   saveToLocalStorage(STORAGE_KEYS.TRANSACTIONS, state.transactions.list);
+  saveToLocalStorage(STORAGE_KEYS.CATEGORIES, state.categories.list);
 });
 
 export type RootState = ReturnType<typeof store.getState>;
