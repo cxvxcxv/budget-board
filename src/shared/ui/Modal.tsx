@@ -34,14 +34,14 @@ export const Modal = ({ show, onClose, title, children }: TModalProps) => {
             transition
             className="w-full max-w-md rounded-2xl bg-gray-900 p-6 pt-0 text-white shadow-lg transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
           >
-            <div className="flex items-center p-4 mb-4 -mx-6 border-b border-border">
+            <div className="-mx-6 mb-4 flex items-center border-b border-border p-4">
               <h2 id="filters-title" className="flex-1 text-lg font-semibold">
                 {title}
               </h2>
               {/* close modal button */}
               <button
                 onClick={onClose}
-                className="p-1 text-gray-400 rounded-full hover:bg-white/10 hover:text-white"
+                className="rounded-full p-1 text-gray-400 hover:bg-white/10 hover:text-white"
               >
                 <X size={20} />
               </button>

@@ -1,4 +1,4 @@
-import type { ITransaction } from '../../../entities/transaction.types';
+import type { ITransaction } from '@/entities/transaction.types';
 import { COLORS } from '@/shared/config/color.constants';
 
 export function getLineChartData(transactions: ITransaction[]) {

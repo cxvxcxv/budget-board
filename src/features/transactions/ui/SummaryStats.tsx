@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import type { ITransaction } from '@/features/transactions';
+import type { ITransaction } from '@/entities';
 import { useAppSelector } from '@/shared/hooks/useStore';
 import { GlassCard } from '@/shared/ui';
 

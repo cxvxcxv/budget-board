@@ -1,4 +1,4 @@
-import { ArrowLeftRight, Home } from 'lucide-react';
+import { ArrowLeftRight, Home, Settings } from 'lucide-react';
 import type { ISidebarLink } from '@/entities/sidebar-link.types';
 
 export const sidebarLinks: ISidebarLink[] = [
@@ -11,4 +11,5 @@ export const sidebarLinks: ISidebarLink[] = [
       { name: 'Categories', path: '/transactions/categories' },
     ],
   },
+  { name: 'Settings', path: '/settings', icon: Settings },
 ];

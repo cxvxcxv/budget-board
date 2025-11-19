@@ -11,7 +11,7 @@ import {
 import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { getLineChartData, lineChartOptions } from '@/features/transactions';
-import { useAppSelector } from '@/shared/hooks/useStore';
+import { useAppSelector } from '@/shared/hooks/';
 import { GlassCard } from '@/shared/ui';
 
 ChartJS.register(
