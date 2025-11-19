@@ -3,13 +3,6 @@ import type { ISidebarLink } from '@/entities/sidebar-link.types';
 
 export const sidebarLinks: ISidebarLink[] = [
   { name: 'Dashboard', path: '/', icon: Home },
-  {
-    name: 'Transactions',
-    icon: ArrowLeftRight,
-    subLinks: [
-      { name: 'All Transactions', path: '/transactions' },
-      { name: 'Categories', path: '/transactions/categories' },
-    ],
-  },
+  { name: 'Transactions', path: '/transactions', icon: ArrowLeftRight },
   { name: 'Settings', path: '/settings', icon: Settings },
 ];

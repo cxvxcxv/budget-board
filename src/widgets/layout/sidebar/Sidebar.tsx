@@ -1,6 +1,4 @@
 import clsx from 'clsx';
-import { useState } from 'react';
-import { SidebarDropdown } from './SidebarDropdown';
 import { SidebarLink } from './SidebarLink';
 import { sidebarLinks } from '@/shared/config/sidebar-links.constants';
 
@@ -10,12 +8,6 @@ type TSidebarProps = {
 };
 
 export const Sidebar = ({ isOpen, onClose }: TSidebarProps) => {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  const toggleDropdown = (linkName: string) => {
-    setOpenDropdown(prev => (prev === linkName ? null : linkName));
-  };
-
   return (
     <>
       {/* overlay for mobile */}
@@ -35,19 +27,9 @@ export const Sidebar = ({ isOpen, onClose }: TSidebarProps) => {
       >
         <h2 className="mb-6 text-center text-xl font-semibold">Budget Board</h2>
         <nav className="space-y-2">
-          {sidebarLinks.map(link =>
-            link.subLinks ? (
-              <SidebarDropdown
-                key={link.name}
-                link={link}
-                isOpen={openDropdown === link.name}
-                onToggle={() => toggleDropdown(link.name)}
-                onClose={onClose}
-              />
-            ) : (
-              <SidebarLink key={link.name} link={link} onClose={onClose} />
-            ),
-          )}
+          {sidebarLinks.map(link => (
+            <SidebarLink key={link.name} link={link} onClose={onClose} />
+          ))}
         </nav>
       </aside>
     </>

@@ -1,15 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 
-interface ISidebarBase {
-  name: string;
-  icon: LucideIcon;
-}
-
-interface ISidebarSubLink {
+export interface ISidebarLink {
   name: string;
   path: string;
+  icon: LucideIcon;
 }
-
-export type ISidebarLink =
-  | (ISidebarBase & { path: string; subLinks?: never })
-  | (ISidebarBase & { subLinks: ISidebarSubLink[]; path?: never });
