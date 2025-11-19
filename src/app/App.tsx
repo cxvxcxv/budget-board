@@ -1,6 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Dashboard, Settings, Transactions } from '@/pages';
+import { Categories, Dashboard, Settings, Transactions } from '@/pages';
 import { Layout } from '@/widgets/layout/Layout';
 
 export const App = () => {
@@ -10,6 +10,7 @@ export const App = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/transactions" element={<Transactions />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
