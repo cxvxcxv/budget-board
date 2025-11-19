@@ -1,0 +1,45 @@
+import {
+  Banknote,
+  Bitcoin,
+  CarFront,
+  CircleQuestionMark,
+  CreditCard,
+  Dumbbell,
+  Gamepad2,
+  Gift,
+  GraduationCap,
+  HandCoins,
+  HandHeart,
+  Home,
+  Landmark,
+  Luggage,
+  ShoppingBag,
+  ShoppingCart,
+  Utensils,
+  Wallet,
+} from 'lucide-react';
+import type { ISelectableIcon } from '@/entities';
+
+export const selectableExpenseIcons: ISelectableIcon[] = [
+  { key: 'heartpulse', icon: HandHeart },
+  { key: 'utensils', icon: Utensils },
+  { key: 'car', icon: CarFront },
+  { key: 'gamepad2', icon: Gamepad2 },
+  { key: 'wallet', icon: Wallet },
+  { key: 'shoppingcart', icon: ShoppingCart },
+  { key: 'shoppingbag', icon: ShoppingBag },
+  { key: 'gift', icon: Gift },
+  { key: 'home', icon: Home },
+  { key: 'luggage', icon: Luggage },
+  { key: 'graduationcap', icon: GraduationCap },
+  { key: 'activity', icon: Dumbbell },
+  { key: 'circlequestionmark', icon: CircleQuestionMark },
+];
+
+export const selectableIncomeIcons: ISelectableIcon[] = [
+  { key: 'creditcard', icon: CreditCard },
+  { key: 'handcoins', icon: HandCoins },
+  { key: 'landmark', icon: Landmark },
+  { key: 'bitcoin', icon: Bitcoin },
+  { key: 'banknote', icon: Banknote },
+];
