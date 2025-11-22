@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import type { ICategory } from '@/entities';
 import { selectableIcons } from '@/shared/config';
+import { selectableColors } from '@/shared/config/selectable-color.constants';
 import { Button, Field } from '@/shared/ui';
 
 type TCategoryFormProps = {
@@ -29,7 +30,7 @@ export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
     >
       <div
         className="flex aspect-square h-24 w-24 items-center justify-center rounded-full"
-        style={{ backgroundColor: category.color }}
+        style={{ backgroundColor: data.color }}
       >
         {Icon && <Icon size={48} />}
       </div>
@@ -62,8 +63,19 @@ export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
         })}
       </div>
       <p className="place-self-start text-sm text-text-dimmed">Color</p>
-      <div>
-        <button className="aspect-square h-6 w-6 rounded-md bg-purple-800"></button>
+      {/* // todo: EXTRACT LATER */}
+      <div className="flex w-full gap-4 overflow-x-auto scroll-smooth px-1 pb-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700">
+        {selectableColors.map(color => (
+          <button
+            key={color.key}
+            className={clsx(
+              'aspect-square h-6 w-6 rounded-md',
+              data.color === color.value && 'border-2',
+            )}
+            style={{ backgroundColor: color.value }}
+            onClick={() => setData({ ...data, color: color.value })}
+          />
+        ))}
       </div>
       <Button onClick={handleSubmit}>Submit</Button>
     </form>
