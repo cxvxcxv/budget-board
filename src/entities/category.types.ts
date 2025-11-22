@@ -1,7 +1,12 @@
-import type { LucideIcon } from 'lucide-react';
-
 export interface ICategory {
+  id: string;
   name: string;
   color: string;
-  icon: LucideIcon;
+  icon: string;
+}
+
+export interface ICreateCategoryPayload {
+  name: string;
+  color: string;
+  icon: string;
 }

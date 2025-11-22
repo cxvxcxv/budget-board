@@ -44,7 +44,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
         type="number"
         placeholder="0.00"
         step={0.01}
-        className="block max-w-full p-2 m-auto text-xl text-center bg-transparent border-b outline-none border-border hover:border-b-primary focus:border-b-primary"
+        className="m-auto block max-w-full border-b border-border bg-transparent p-2 text-center text-xl outline-none hover:border-b-primary focus:border-b-primary"
         onChange={e => setData({ ...data, amount: +e.target.value })}
       />
       {/* type toggle */}
@@ -75,7 +75,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
       />
       <Select
         name="category"
-        onChange={e => setData({ ...data, category: e.target.value })}
+        onChange={e => setData({ ...data, categoryId: e.target.value })}
       >
         <Option>Health</Option>
         <Option>Games</Option>
@@ -95,7 +95,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
       />
       <div className="flex justify-end">
         <Button
-          className="px-6 py-2 rounded-xl bg-primary hover:bg-indigo-600"
+          className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600"
           onClick={handleSubmit}
         >
           Add Transaction

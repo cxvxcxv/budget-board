@@ -1,9 +1,11 @@
+import type { ICategory } from './category.types';
+
 export interface ITransaction {
   id: string;
   title: string;
   type: 'income' | 'expense';
   amount: number;
-  category: string;
+  category: ICategory;
   note?: string;
   date: string;
 }
@@ -11,7 +13,7 @@ export interface ITransaction {
 export interface ITransactionFiltersState {
   startDate: string;
   endDate: string;
-  category: string;
+  categoryName: string;
   type: 'all' | 'expense' | 'income';
 }
 
@@ -21,7 +23,7 @@ export interface ICreateTransactionPayload {
   title: string;
   type: 'income' | 'expense';
   amount: number;
-  category: string;
+  categoryId: string;
   note?: string;
   date: string;
 }

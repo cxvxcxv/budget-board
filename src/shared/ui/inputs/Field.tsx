@@ -16,7 +16,7 @@ export const Field = ({
   return (
     <div className={clsx('flex w-full flex-col gap-1', containerClassName)}>
       {label && (
-        <label htmlFor={id} className="text-sm text-gray-400">
+        <label htmlFor={id} className="text-sm text-text-dimmed">
           {label}
         </label>
       )}

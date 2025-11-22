@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import type { ISelectableIcon } from '@/entities';
 
-export const selectableExpenseIcons: ISelectableIcon[] = [
+export const selectableIcons: ISelectableIcon[] = [
   { key: 'heartpulse', icon: HandHeart },
   { key: 'utensils', icon: Utensils },
   { key: 'car', icon: CarFront },
@@ -34,9 +34,6 @@ export const selectableExpenseIcons: ISelectableIcon[] = [
   { key: 'graduationcap', icon: GraduationCap },
   { key: 'activity', icon: Dumbbell },
   { key: 'circlequestionmark', icon: CircleQuestionMark },
-];
-
-export const selectableIncomeIcons: ISelectableIcon[] = [
   { key: 'creditcard', icon: CreditCard },
   { key: 'handcoins', icon: HandCoins },
   { key: 'landmark', icon: Landmark },

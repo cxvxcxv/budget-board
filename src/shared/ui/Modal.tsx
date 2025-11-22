@@ -17,7 +17,16 @@ type TModalProps = {
 
 export const Modal = ({ show, onClose, title, children }: TModalProps) => {
   return (
-    <Transition show={show} as={Fragment} appear>
+    <Transition
+      show={show}
+      as={Fragment}
+      enter="transition-opacity duration-75"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="transition-opacity duration-150"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
       <Dialog
         as="div"
         className="relative z-50 focus:outline-none"

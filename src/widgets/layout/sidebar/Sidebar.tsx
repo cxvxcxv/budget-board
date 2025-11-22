@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { SidebarLink } from './SidebarLink';
-import { sidebarLinks } from '@/shared/config/sidebar-links.constants';
+import { sidebarLinks } from '@/shared/config';
 
 type TSidebarProps = {
   isOpen: boolean;
@@ -20,7 +20,6 @@ export const Sidebar = ({ isOpen, onClose }: TSidebarProps) => {
       />
 
       <aside
-        inert={!isOpen} // disable focus and interaction inside if closed
         className={clsx(
           'fixed inset-y-0 left-0 z-20 w-64 bg-gray-800 p-4 shadow-lg transition-transform lg:static lg:translate-x-0',
           isOpen ? 'translate-x-0' : '-translate-x-full',
