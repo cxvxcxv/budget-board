@@ -21,6 +21,7 @@ export const Field = ({
         </label>
       )}
       <input
+        id={id}
         className={clsx(
           'rounded-md border border-border bg-transparent px-3 py-2 text-sm text-gray-200 placeholder-gray-400 focus:border-primary focus:outline-none',
           className,

@@ -1,6 +1,6 @@
 import type { ISelectableColor } from '@/entities';
 
-export const selectableColors: ISelectableColor[] = [
+export const SELECTABLE_COLORS: ISelectableColor[] = [
   { key: 'red', value: '#EF4444' }, // red 500
   { key: 'orange', value: '#F97316' }, // orange 500
   { key: 'amber', value: '#F59E0B' }, // amber 500

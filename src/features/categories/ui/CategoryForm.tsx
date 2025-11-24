@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import { useState } from 'react';
+import { CategoryIconsList } from './CategoryIconsList';
 import type { ICategory } from '@/entities';
-import { selectableIcons } from '@/shared/config';
-import { selectableColors } from '@/shared/config/selectable-color.constants';
+import { SELECTABE_ICONS } from '@/shared/config';
+import { SELECTABLE_COLORS } from '@/shared/config/selectable-color.constants';
 import { Button, Field } from '@/shared/ui';
 
 type TCategoryFormProps = {
@@ -13,7 +14,7 @@ type TCategoryFormProps = {
 export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
   const [data, setData] = useState<ICategory>(category ?? {});
 
-  const Icon = selectableIcons.find(i => i.key === data.icon)?.icon;
+  const Icon = SELECTABE_ICONS.find(i => i.key === data.icon)?.icon;
 
   const handleSubmit = () => {
     try {
@@ -42,30 +43,18 @@ export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
         onChange={e => setData({ ...data, name: e.target.value })}
         className="text-center"
         label="Name"
+        id="name"
       />
       <p className="place-self-start text-sm text-text-dimmed">Icon</p>
-      {/* // todo: EXTRACT LATER */}
-      <div className="grid max-h-48 w-full grid-cols-5 justify-items-center gap-4 overflow-y-auto scroll-smooth py-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700">
-        {selectableIcons.map(icon => {
-          const Icon = icon.icon;
-          return (
-            <button
-              key={icon.key}
-              onClick={() => setData({ ...data, icon: icon.key })}
-              className={clsx(
-                'rounded-md p-2 transition-transform hover:scale-110',
-                data.icon === icon.key && 'bg-primary/20 ring-1 ring-primary',
-              )}
-            >
-              <Icon strokeWidth={1.25} size={32} />
-            </button>
-          );
-        })}
-      </div>
+      <CategoryIconsList
+        selectedIcon={data.icon}
+        onSelect={key => setData(prev => ({ ...prev, icon: key }))}
+      />
+
       <p className="place-self-start text-sm text-text-dimmed">Color</p>
       {/* // todo: EXTRACT LATER */}
       <div className="flex w-full gap-4 overflow-x-auto scroll-smooth px-1 pb-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700">
-        {selectableColors.map(color => (
+        {SELECTABLE_COLORS.map(color => (
           <button
             key={color.key}
             className={clsx(

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { SidebarLink } from './SidebarLink';
-import { sidebarLinks } from '@/shared/config';
+import { SIDEBAR_LINKS } from '@/shared/config';
 
 type TSidebarProps = {
   isOpen: boolean;
@@ -27,7 +27,7 @@ export const Sidebar = ({ isOpen, onClose }: TSidebarProps) => {
       >
         <h2 className="mb-6 text-center text-xl font-semibold">Budget Board</h2>
         <nav className="space-y-2">
-          {sidebarLinks.map(link => (
+          {SIDEBAR_LINKS.map(link => (
             <SidebarLink key={link.name} link={link} onClose={onClose} />
           ))}
         </nav>

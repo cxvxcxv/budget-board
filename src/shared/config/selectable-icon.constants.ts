@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import type { ISelectableIcon } from '@/entities';
 
-export const selectableIcons: ISelectableIcon[] = [
+export const SELECTABE_ICONS: ISelectableIcon[] = [
   { key: 'heartpulse', icon: HandHeart },
   { key: 'utensils', icon: Utensils },
   { key: 'car', icon: CarFront },

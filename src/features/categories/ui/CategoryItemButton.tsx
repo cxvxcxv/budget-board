@@ -1,7 +1,7 @@
 import { CircleX } from 'lucide-react';
 import type { ButtonHTMLAttributes } from 'react';
 import type { ICategory } from '@/entities';
-import { selectableIcons } from '@/shared/config';
+import { SELECTABE_ICONS } from '@/shared/config';
 
 type TCategoryItemButtonProps = {
   category: ICategory;
@@ -11,7 +11,7 @@ export const CategoryItemButton = ({
   category,
   ...props
 }: TCategoryItemButtonProps) => {
-  const Icon = selectableIcons.find(i => i.key === category.icon)?.icon;
+  const Icon = SELECTABE_ICONS.find(i => i.key === category.icon)?.icon;
   return (
     <button
       className="flex aspect-[3/4] flex-col items-center justify-center rounded-xl border bg-opacity-50 p-2 transition-transform hover:-translate-y-2"

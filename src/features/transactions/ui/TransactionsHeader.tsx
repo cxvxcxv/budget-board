@@ -4,11 +4,11 @@ import type { Dispatch, SetStateAction } from 'react';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '@/entities/transaction.types';
+} from '@/entities';
 import { FILTERS_INITIAL_STATE } from '@/features/transactions';
 import { Button, Field, Option, Select } from '@/shared/ui';
 
-type Props = {
+type TTransactionHeaderProps = {
   sortBy: TTransactionsSortState;
   setSortBy: (val: TTransactionsSortState) => void;
   setIsReversed: Dispatch<SetStateAction<boolean>>;
@@ -26,7 +26,7 @@ export const TransactionsHeader = ({
   onOpenFilters,
   searchTerm,
   setSearchTerm,
-}: Props) => {
+}: TTransactionHeaderProps) => {
   const isDefaultFilters =
     JSON.stringify(filters) === JSON.stringify(FILTERS_INITIAL_STATE);
 
@@ -54,7 +54,7 @@ export const TransactionsHeader = ({
         <button
           onClick={() => setIsReversed(p => !p)}
           title="Reverse order"
-          className="flex items-center justify-center p-2 text-gray-300 transition rounded-md hover:bg-white/10 hover:text-white"
+          className="flex items-center justify-center rounded-md p-2 text-gray-300 transition hover:bg-white/10 hover:text-white"
         >
           <ArrowUpDown strokeWidth={1.5} size={18} />
         </button>
