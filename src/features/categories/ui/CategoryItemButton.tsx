@@ -11,13 +11,13 @@ export const CategoryItemButton = ({
   category,
   ...props
 }: TCategoryItemButtonProps) => {
-  const Icon = SELECTABE_ICONS.find(i => i.key === category.icon)?.icon;
+  const Icon = SELECTABE_ICONS.find(i => i.key === category.iconKey)?.Icon;
   return (
     <button
       className="flex aspect-[3/4] flex-col items-center justify-center rounded-xl border bg-opacity-50 p-2 transition-transform hover:-translate-y-2"
       style={{
-        borderColor: category.color,
-        backgroundColor: `${category.color}33`, // opacity 20%
+        borderColor: category.colorValue,
+        backgroundColor: `${category.colorValue}33`, // opacity 20%
       }}
       {...props}
     >
