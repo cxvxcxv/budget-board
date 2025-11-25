@@ -1,11 +1,9 @@
-import type { ICategory } from './category.types';
-
 export interface ITransaction {
   id: string;
   title: string;
   type: 'income' | 'expense';
   amount: number;
-  category: ICategory;
+  categoryId: string;
   note?: string;
   date: string;
 }

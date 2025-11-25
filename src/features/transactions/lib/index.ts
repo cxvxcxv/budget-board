@@ -1,4 +1,4 @@
-export * from './addTransaction';
+export * from './createTransaction';
 export * from './filterTransactions';
 export * from './getDoughnutChartData';
 export * from './getLineChartData';

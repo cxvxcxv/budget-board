@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { SELECTABE_ICONS } from '@/shared/config';
+import { SELECTABLE_ICONS } from '@/shared/config';
 
 type TCategoryIconsListProps = {
   selectedIconKey: string;
@@ -12,12 +12,13 @@ export const CategoryIconsList = ({
 }: TCategoryIconsListProps) => {
   return (
     <div className="grid max-h-48 w-full grid-cols-5 justify-items-center gap-4 overflow-y-auto scroll-smooth py-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700">
-      {SELECTABE_ICONS.map(icon => {
+      {SELECTABLE_ICONS.map(icon => {
         const Icon = icon.Icon;
         return (
           <button
             key={icon.key}
             onClick={() => onSelect(icon.key)}
+            type="button"
             className={clsx(
               'rounded-md p-2 transition-transform hover:scale-110',
               selectedIconKey === icon.key &&

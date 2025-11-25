@@ -1,25 +1,46 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { CATEGORY_INITIAL_STATE } from '../config';
+import { createCategory, updateCategory } from '../lib';
+import { addCategory, editCategory, removeCategory } from '../model';
 import type { ICategory } from '@/entities';
 import {
   CategoryColorsList,
   CategoryIconsList,
 } from '@/features/categories/ui';
-import { SELECTABE_ICONS } from '@/shared/config';
+import { SELECTABLE_ICONS } from '@/shared/config';
+import { useAppDispatch } from '@/shared/hooks';
 import { Button, Field } from '@/shared/ui';
 
 type TCategoryFormProps = {
-  category: ICategory;
-  onSubmit: () => void;
+  category?: ICategory;
+  onClose: () => void;
 };
 
-export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
-  const [data, setData] = useState<ICategory>(category ?? {});
+export const CategoryForm = ({ category, onClose }: TCategoryFormProps) => {
+  const dispatch = useAppDispatch();
+  const [data, setData] = useState<ICategory>(
+    category ?? CATEGORY_INITIAL_STATE,
+  );
 
-  const Icon = SELECTABE_ICONS.find(i => i.key === data.iconKey)?.Icon;
+  const Icon = SELECTABLE_ICONS.find(i => i.key === data.iconKey)?.Icon;
 
   const handleSubmit = () => {
     try {
-      onSubmit();
+      if (data.id) dispatch(editCategory(updateCategory(data)));
+      else dispatch(addCategory(createCategory(data)));
+      toast.success('Successfully saved');
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = () => {
+    try {
+      dispatch(removeCategory(data.id));
+      toast.success('Deleted');
+      onClose();
     } catch (error) {
       console.error(error);
     }
@@ -28,8 +49,12 @@ export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
   return (
     <form
       className="flex flex-col items-center gap-4"
-      onClick={e => e.preventDefault()}
+      onSubmit={e => {
+        e.preventDefault();
+        handleSubmit();
+      }}
     >
+      <p className="place-self-start text-sm text-text-dimmed">Preview</p>
       <div
         className="flex aspect-square h-24 w-24 items-center justify-center rounded-full"
         style={{ backgroundColor: data.colorValue }}
@@ -58,7 +83,23 @@ export const CategoryForm = ({ category, onSubmit }: TCategoryFormProps) => {
         onSelect={value => setData(prev => ({ ...prev, colorValue: value }))}
       />
 
-      <Button onClick={handleSubmit}>Submit</Button>
+      <div className="mt-4 flex w-full justify-between gap-12">
+        <Button
+          className="text-danger hover:bg-danger hover:text-white active:scale-95"
+          onClick={handleDelete}
+          type="button"
+        >
+          Delete
+        </Button>
+
+        <Button
+          onClick={handleSubmit}
+          className="bg-primary hover:bg-indigo-800 active:scale-95"
+          type="submit"
+        >
+          Submit
+        </Button>
+      </div>
     </form>
   );
 };

@@ -18,9 +18,14 @@ const categoriesSlice = createSlice({
     addCategory: (state, action: PayloadAction<ICategory>) => {
       state.list.push(action.payload);
     },
+    editCategory: (state, action: PayloadAction<ICategory>) => {
+      state.list = state.list.map(category =>
+        category.id === action.payload.id ? action.payload : category,
+      );
+    },
     removeCategory: (state, action: PayloadAction<string>) => {
       state.list = state.list.filter(
-        category => category.name !== action.payload,
+        category => category.id !== action.payload,
       );
     },
     clearCategories: state => {
@@ -29,6 +34,6 @@ const categoriesSlice = createSlice({
   },
 });
 
-export const { addCategory, removeCategory, clearCategories } =
+export const { addCategory, editCategory, removeCategory, clearCategories } =
   categoriesSlice.actions;
 export default categoriesSlice.reducer;

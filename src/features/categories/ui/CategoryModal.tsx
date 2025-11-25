@@ -3,7 +3,7 @@ import type { ICategory } from '@/entities';
 import { Modal } from '@/shared/ui';
 
 type TCategoryModalProps = {
-  category: ICategory;
+  category?: ICategory;
   isOpen: boolean;
   onClose: () => void;
 };
@@ -19,7 +19,7 @@ export const CategoryModal = ({
       show={isOpen}
       onClose={onClose}
     >
-      <CategoryForm category={category} onSubmit={onClose} />
+      <CategoryForm category={category} onClose={onClose} />
     </Modal>
   );
 };

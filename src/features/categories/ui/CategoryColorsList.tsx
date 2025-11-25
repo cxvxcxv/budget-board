@@ -15,6 +15,7 @@ export const CategoryColorsList = ({
       {SELECTABLE_COLORS.map(color => (
         <button
           key={color.key}
+          type="button"
           className={clsx(
             'aspect-square h-6 w-6 rounded-md',
             selectedColorValue === color.value && 'border-2',
