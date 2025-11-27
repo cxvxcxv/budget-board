@@ -25,7 +25,7 @@ export const Categories = () => {
     <section>
       <CategoriesList onEditCategory={handleEditCategory} />
       <Button
-        className="mt-4 w-full bg-primary hover:bg-indigo-800 active:scale-95"
+        className="mt-4 w-full bg-primary py-4 text-xl hover:bg-indigo-800 active:scale-95"
         onClick={handleAddCategory}
       >
         Add category

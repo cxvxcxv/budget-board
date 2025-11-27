@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { CATEGORY_INITIAL_STATE } from '../config';
@@ -85,7 +86,10 @@ export const CategoryForm = ({ category, onClose }: TCategoryFormProps) => {
 
       <div className="mt-4 flex w-full justify-between gap-12">
         <Button
-          className="text-danger hover:bg-danger hover:text-white active:scale-95"
+          className={clsx(
+            'text-danger hover:bg-danger hover:text-white active:scale-95',
+            !data.id && 'hidden',
+          )}
           onClick={handleDelete}
           type="button"
         >
@@ -93,11 +97,10 @@ export const CategoryForm = ({ category, onClose }: TCategoryFormProps) => {
         </Button>
 
         <Button
-          onClick={handleSubmit}
           className="bg-primary hover:bg-indigo-800 active:scale-95"
           type="submit"
         >
-          Submit
+          Save
         </Button>
       </div>
     </form>
