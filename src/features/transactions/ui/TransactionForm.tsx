@@ -6,7 +6,7 @@ import {
   createTransaction,
   TRANSACTION_FORM_INITIAL_STATE,
 } from '@/features/transactions/';
-import { useAppDispatch } from '@/shared/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import {
   Button,
   DateInput,
@@ -21,6 +21,8 @@ type TTransactionFormProps = {
 };
 
 export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
+  const categoiries = useAppSelector(state => state.categories.list);
+
   const dispatch = useAppDispatch();
 
   const [data, setData] = useState<ICreateTransactionPayload>(
@@ -29,6 +31,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
 
   const handleSubmit = () => {
     try {
+      console.log(data);
       const transaction = createTransaction(data);
       dispatch(addTransaction(transaction));
       onClose();
@@ -38,7 +41,13 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
   };
 
   return (
-    <form className="space-y-4 rounded-2xl" onSubmit={e => e.preventDefault()}>
+    <form
+      className="space-y-4 rounded-2xl"
+      onSubmit={e => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
       <input
         name="amount"
         type="number"
@@ -75,10 +84,14 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
       />
       <Select
         name="category"
+        value={data.categoryId}
         onChange={e => setData({ ...data, categoryId: e.target.value })}
       >
-        <Option>Health</Option>
-        <Option>Games</Option>
+        {categoiries.map(category => (
+          <Option key={category.id} value={category.id}>
+            {category.name}
+          </Option>
+        ))}
       </Select>
 
       <DateInput
@@ -94,10 +107,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
         onChange={e => setData({ ...data, note: e.target.value })}
       />
       <div className="flex justify-end">
-        <Button
-          className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600"
-          onClick={handleSubmit}
-        >
+        <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600">
           Add Transaction
         </Button>
       </div>

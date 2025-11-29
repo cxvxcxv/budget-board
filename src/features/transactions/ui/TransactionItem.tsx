@@ -21,7 +21,7 @@ export const TransactionItem = ({
             </span>
           )}
         </p>
-        <p className="text-sm text-gray-400">{transaction.category}</p>
+        <p className="text-sm text-gray-400">{transaction.categoryId}</p>
       </div>
 
       <div

@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { ArrowUpDown, Settings2 } from 'lucide-react';
-import type { Dispatch, SetStateAction } from 'react';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
@@ -11,21 +10,21 @@ import { Button, Field, Option, Select } from '@/shared/ui';
 type TTransactionHeaderProps = {
   sortBy: TTransactionsSortState;
   setSortBy: (val: TTransactionsSortState) => void;
-  setIsReversed: Dispatch<SetStateAction<boolean>>;
+  onReverse: () => void;
   filters: ITransactionFiltersState;
   onOpenFilters: () => void;
   searchTerm: string;
-  setSearchTerm: Dispatch<SetStateAction<string>>;
+  onSearch: (term: string) => void;
 };
 
 export const TransactionsHeader = ({
   sortBy,
   setSortBy,
-  setIsReversed,
+  onReverse,
   filters,
   onOpenFilters,
   searchTerm,
-  setSearchTerm,
+  onSearch,
 }: TTransactionHeaderProps) => {
   const isDefaultFilters =
     JSON.stringify(filters) === JSON.stringify(FILTERS_INITIAL_STATE);
@@ -35,7 +34,7 @@ export const TransactionsHeader = ({
       <Field
         name="search"
         placeholder="Search transactions"
-        onChange={e => setSearchTerm(e.target.value)}
+        onChange={e => onSearch(e.target.value)}
         value={searchTerm}
         containerClassName="md:flex-[2]"
       />
@@ -52,7 +51,7 @@ export const TransactionsHeader = ({
         </Select>
 
         <button
-          onClick={() => setIsReversed(p => !p)}
+          onClick={onReverse}
           title="Reverse order"
           className="flex items-center justify-center rounded-md p-2 text-gray-300 transition hover:bg-white/10 hover:text-white"
         >
