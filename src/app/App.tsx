@@ -1,7 +1,7 @@
 import { Toaster } from 'react-hot-toast';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Categories, Dashboard, Settings, Transactions } from '@/pages';
-import { Layout } from '@/widgets/layout/Layout';
+import { Layout } from '@/widgets';
 
 export const App = () => {
   return (

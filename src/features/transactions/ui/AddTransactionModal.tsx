@@ -1,5 +1,5 @@
 import { TransactionForm } from './TransactionForm';
-import { Modal } from '@/shared/ui/Modal';
+import { Modal } from '@/shared/ui';
 
 type TAddTransactionModalProps = {
   isOpen: boolean;

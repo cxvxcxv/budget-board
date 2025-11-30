@@ -1,14 +1,17 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { CATEGORY_INITIAL_STATE } from '../config';
-import { createCategory, updateCategory } from '../lib';
-import { addCategory, editCategory, removeCategory } from '../model';
 import type { ICategory } from '@/entities';
 import {
+  addCategory,
+  CATEGORY_INITIAL_STATE,
   CategoryColorsList,
   CategoryIconsList,
-} from '@/features/categories/ui';
+  createCategory,
+  editCategory,
+  removeCategory,
+  updateCategory,
+} from '@/features/categories';
 import { SELECTABLE_ICONS } from '@/shared/config';
 import { useAppDispatch } from '@/shared/hooks';
 import { Button, Field } from '@/shared/ui';

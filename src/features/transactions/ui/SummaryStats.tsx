@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import type { ITransaction } from '@/entities';
-import { useAppSelector } from '@/shared/hooks/useStore';
+import { useAppSelector } from '@/shared/hooks';
 import { GlassCard } from '@/shared/ui';
 
 export const SummaryStats: React.FC = () => {

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { groupTransactionsByDate } from '../lib/groupTransactionsByDate';
+import { groupTransactionsByDate } from '../lib';
 import { TransactionItem } from './TransactionItem';
 import type { IHydratedTransaction } from '@/entities';
 

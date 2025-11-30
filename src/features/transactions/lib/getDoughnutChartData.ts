@@ -1,14 +1,14 @@
-import type { ITransaction } from '../../../entities/transaction.types';
+import type { IHydratedTransaction } from '@/entities';
 import { expenseColors, incomeColors } from '@/shared/config/color.constants';
 
 export function getPieChartData(
-  transactions: ITransaction[],
+  transactions: IHydratedTransaction[],
   type: 'income' | 'expense',
 ) {
   const filtered = transactions.filter(t => t.type === type);
 
   const categoryTotals = filtered.reduce<Record<string, number>>((acc, t) => {
-    acc[t.category] = (acc[t.category] || 0) + t.amount;
+    acc[t.categoryName] = (acc[t.categoryName] || 0) + t.amount;
     return acc;
   }, {});
 

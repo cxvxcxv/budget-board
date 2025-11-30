@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
-import { STORAGE_KEYS } from '@/shared/config/storage-keys.constants';
-import { saveToLocalStorage } from '@/shared/lib/localStorage';
+import { STORAGE_KEYS } from '@/shared/config';
+import { saveToLocalStorage } from '@/shared/lib';
 
 export const store = configureStore({
   reducer: rootReducer,

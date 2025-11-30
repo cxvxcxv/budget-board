@@ -1,5 +1,5 @@
 import { ArrowLeftRight, Home, Settings, Tag } from 'lucide-react';
-import type { ISidebarLink } from '@/entities/sidebar-link.types';
+import type { ISidebarLink } from '@/entities';
 
 export const SIDEBAR_LINKS: ISidebarLink[] = [
   { name: 'Dashboard', path: '/', icon: Home },

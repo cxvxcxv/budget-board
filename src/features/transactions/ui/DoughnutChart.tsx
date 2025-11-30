@@ -2,15 +2,19 @@ import { ArcElement, Chart, Legend, Tooltip } from 'chart.js';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { doughnutChartOptions, getPieChartData } from '@/features/transactions';
-import { useAppSelector } from '@/shared/hooks/useStore';
+import {
+  doughnutChartOptions,
+  getPieChartData,
+  selectHydratedTransactions,
+} from '@/features/transactions';
+import { useAppSelector } from '@/shared/hooks';
 import { GlassCard } from '@/shared/ui';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
 export const DoughnutChart = () => {
   const [flipped, setFlipped] = useState(false);
-  const transactions = useAppSelector(state => state.transactions.list);
+  const transactions = useAppSelector(selectHydratedTransactions);
 
   const expensesData = getPieChartData(transactions, 'expense');
   const incomesData = getPieChartData(transactions, 'income');
