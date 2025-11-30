@@ -1,10 +1,7 @@
-import type {
-  ITransaction,
-  TTransactionsSortState,
-} from '../../../entities/transaction.types';
+import type { IHydratedTransaction, TTransactionsSortState } from '@/entities';
 
 export const sortTransactions = (
-  transactions: ITransaction[],
+  transactions: IHydratedTransaction[],
   sortBy: TTransactionsSortState,
 ) => {
   // avoid mutating redux state

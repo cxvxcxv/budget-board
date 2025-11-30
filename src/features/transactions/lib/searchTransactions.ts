@@ -1,13 +1,13 @@
-import type { ITransaction } from '@/entities/transaction.types';
+import type { IHydratedTransaction } from '@/entities';
 
 export const searchTransactions = (
-  transactions: ITransaction[],
+  transactions: IHydratedTransaction[],
   searchTerm: string,
 ) => {
   const searchedTransactions = transactions.filter(
     t =>
       t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      t.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      t.categoryName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       t.note?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 

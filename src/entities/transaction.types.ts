@@ -25,3 +25,9 @@ export interface ICreateTransactionPayload {
   note?: string;
   date: string;
 }
+
+export interface IHydratedTransaction extends ITransaction {
+  categoryName: string;
+  categoryColorValue: string;
+  categoryIconKey: string;
+}

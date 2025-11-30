@@ -1,19 +1,22 @@
-import type { ITransaction } from '../../../entities/transaction.types';
+import type { IHydratedTransaction } from '@/entities';
 
 export function groupTransactionsByDate(
-  transactions: ITransaction[],
+  transactions: IHydratedTransaction[],
   isReversed = false,
 ) {
-  const map = transactions.reduce((acc: Record<string, ITransaction[]>, tx) => {
-    const date = new Date(tx.date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-    if (!acc[date]) acc[date] = [];
-    acc[date].push(tx);
-    return acc;
-  }, {});
+  const map = transactions.reduce(
+    (acc: Record<string, IHydratedTransaction[]>, tx) => {
+      const date = new Date(tx.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+      if (!acc[date]) acc[date] = [];
+      acc[date].push(tx);
+      return acc;
+    },
+    {},
+  );
 
   const entries = Object.entries(map);
 

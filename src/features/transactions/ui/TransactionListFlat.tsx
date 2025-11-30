@@ -1,9 +1,11 @@
-import type { ITransaction } from '../../../entities/transaction.types';
 import { TransactionItem } from './TransactionItem';
+import type { IHydratedTransaction } from '@/entities';
 
-type Props = { transactions: ITransaction[] };
+type TTransactionListFlatProps = { transactions: IHydratedTransaction[] };
 
-export const TransactionListFlat = ({ transactions }: Props) => {
+export const TransactionListFlat = ({
+  transactions,
+}: TTransactionListFlatProps) => {
   if (!transactions.length)
     return <p className="text-gray-400">No transactions found.</p>;
 

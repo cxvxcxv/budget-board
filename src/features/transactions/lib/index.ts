@@ -6,3 +6,4 @@ export * from './groupTransactionsByDate';
 export * from './searchTransactions';
 export * from './sortTransactions';
 export * from './useProcessedTransactions';
+export * from './validateTransaction';

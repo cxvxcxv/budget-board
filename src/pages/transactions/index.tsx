@@ -1,20 +1,21 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import type {
   ITransactionFiltersState,
   TTransactionsSortState,
-} from '@/entities/transaction.types';
+} from '@/entities';
 import {
   FILTERS_INITIAL_STATE,
   FiltersModal,
+  selectHydratedTransactions,
   TransactionListFlat,
   TransactionListGrouped,
   TransactionsHeader,
   useProcessedTransactions,
 } from '@/features/transactions';
-import { useAppSelector } from '@/shared/hooks/useStore';
 
 export const Transactions = () => {
-  const transactions = useAppSelector(state => state.transactions.list);
+  const transactions = useSelector(selectHydratedTransactions);
 
   const [filters, setFilters] = useState<ITransactionFiltersState>(
     FILTERS_INITIAL_STATE,
@@ -32,16 +33,29 @@ export const Transactions = () => {
     isReversed,
   );
 
+  const handleReverse = () => {
+    setIsReversed(prev => !prev);
+  };
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+  };
+
+  const handleApplyFilters = (filters: ITransactionFiltersState) => {
+    setFilters(filters);
+    setIsFiltersOpen(false);
+  };
+
   return (
     <section className="space-y-8">
       <TransactionsHeader
         sortBy={sortBy}
         setSortBy={setSortBy}
-        setIsReversed={setIsReversed}
+        onReverse={handleReverse}
         filters={filters}
         onOpenFilters={() => setIsFiltersOpen(true)}
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
+        onSearch={handleSearch}
       />
 
       {sortBy === 'date' ? (
@@ -56,7 +70,7 @@ export const Transactions = () => {
       <FiltersModal
         isOpen={isFiltersOpen}
         onClose={() => setIsFiltersOpen(false)}
-        onApply={setFilters}
+        onApply={handleApplyFilters}
       />
     </section>
   );

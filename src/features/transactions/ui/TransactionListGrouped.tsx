@@ -1,14 +1,17 @@
 import { useMemo } from 'react';
-import type { ITransaction } from '../../../entities/transaction.types';
 import { groupTransactionsByDate } from '../lib/groupTransactionsByDate';
 import { TransactionItem } from './TransactionItem';
+import type { IHydratedTransaction } from '@/entities';
 
-type Props = {
-  transactions: ITransaction[];
+type TTransactionListGruopedProps = {
+  transactions: IHydratedTransaction[];
   isReversed: boolean;
 };
 
-export const TransactionListGrouped = ({ transactions, isReversed }: Props) => {
+export const TransactionListGrouped = ({
+  transactions,
+  isReversed,
+}: TTransactionListGruopedProps) => {
   const grouped = useMemo(
     () => groupTransactionsByDate(transactions, isReversed),
     [transactions, isReversed],

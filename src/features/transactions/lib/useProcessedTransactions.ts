@@ -3,13 +3,13 @@ import { filterTransactions } from './filterTransactions';
 import { searchTransactions } from './searchTransactions';
 import { sortTransactions } from './sortTransactions';
 import type {
-  ITransaction,
+  IHydratedTransaction,
   ITransactionFiltersState,
   TTransactionsSortState,
 } from '@/entities/transaction.types';
 
 export const useProcessedTransactions = (
-  transactions: ITransaction[],
+  transactions: IHydratedTransaction[],
   filters: ITransactionFiltersState,
   sortBy: TTransactionsSortState,
   searchTerm: string,

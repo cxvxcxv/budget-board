@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import type { ITransaction } from '../../../entities/transaction.types';
+import type { IHydratedTransaction } from '@/entities';
 
 type TTransactionItemProps = {
-  transaction: ITransaction;
+  transaction: IHydratedTransaction;
   showDate?: boolean;
 };
 
@@ -21,7 +21,7 @@ export const TransactionItem = ({
             </span>
           )}
         </p>
-        <p className="text-sm text-gray-400">{transaction.categoryId}</p>
+        <p className="text-sm text-gray-400">{transaction.categoryName}</p>
       </div>
 
       <div
