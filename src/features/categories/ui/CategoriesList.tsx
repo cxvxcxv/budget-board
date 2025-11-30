@@ -7,7 +7,9 @@ type TCategoriesListProps = {
 };
 
 export const CategoriesList = ({ onEditCategory }: TCategoriesListProps) => {
-  const categories = useAppSelector(state => state.categories.list);
+  const categories: ICategory[] = useAppSelector(
+    state => state.categories.list,
+  );
   return (
     <section className="grid grid-cols-2 gap-4 md:grid-cols-4">
       {categories.map(category => (

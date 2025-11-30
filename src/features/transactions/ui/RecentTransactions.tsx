@@ -1,12 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import type { ITransaction } from '@/entities';
-import { useAppSelector } from '@/shared/hooks/useStore';
+import { selectHydratedTransactions } from '../model';
+import type { IHydratedTransaction } from '@/entities';
 import { GlassCard } from '@/shared/ui';
 
 export const RecentTransactions: React.FC = () => {
-  const transactions: ITransaction[] = useAppSelector(
-    state => state.transactions.list,
+  const transactions: IHydratedTransaction[] = useSelector(
+    selectHydratedTransactions,
   );
 
   const recentTransactions = [...transactions]
@@ -33,14 +34,16 @@ export const RecentTransactions: React.FC = () => {
         </Link>
       </div>
       <ul className="space-y-3 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700 md:max-h-64">
-        {recentTransactions.map((transaction: ITransaction) => (
+        {recentTransactions.map(transaction => (
           <li
             key={transaction.id}
             className="flex items-center justify-between rounded-xl border border-border bg-black/20 px-4 py-2 backdrop-blur-lg"
           >
             <div>
               <h3 className="font-medium text-gray-100">{transaction.title}</h3>
-              <p className="text-sm text-gray-400">{transaction.category}</p>
+              <p className="text-sm text-gray-400">
+                {transaction.categoryName}
+              </p>
             </div>
             <div
               className={`font-semibold ${

@@ -13,12 +13,20 @@ export function filterTransactions(
     const matchCategory =
       !filters.categoryName ||
       transaction.categoryName === filters.categoryName;
-    const matchStart =
-      !filters.startDate || transaction.date >= filters.startDate;
-    const matchEnd = !filters.endDate || transaction.date <= filters.endDate;
-    return (
-      matchType && matchCategory && matchCategory && matchStart && matchEnd
-    );
+
+    // parse dates as numbers to avoid string comparison issues
+    const txTime = new Date(transaction.date).getTime();
+    const startTime = filters.startDate
+      ? new Date(filters.startDate).getTime()
+      : null;
+    const endTime = filters.endDate
+      ? new Date(filters.endDate).getTime()
+      : null;
+
+    const matchStart = !startTime || txTime >= startTime;
+    const matchEnd = !endTime || txTime <= endTime;
+
+    return matchType && matchCategory && matchStart && matchEnd;
   });
 
   return filteredTransactions;
