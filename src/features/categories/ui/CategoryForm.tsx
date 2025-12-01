@@ -88,16 +88,18 @@ export const CategoryForm = ({ category, onClose }: TCategoryFormProps) => {
       />
 
       <div className="mt-4 flex w-full justify-between gap-12">
-        <Button
-          className={clsx(
-            'text-danger hover:bg-danger hover:text-white active:scale-95',
-            !data.id && 'hidden',
-          )}
-          onClick={handleDelete}
-          type="button"
-        >
-          Delete
-        </Button>
+        {data.id !== 'other' && (
+          <Button
+            className={clsx(
+              'text-danger hover:bg-danger hover:text-white active:scale-95',
+              !data.id && 'hidden',
+            )}
+            onClick={handleDelete}
+            type="button"
+          >
+            Delete
+          </Button>
+        )}
 
         <Button
           className="bg-primary hover:bg-indigo-800 active:scale-95"

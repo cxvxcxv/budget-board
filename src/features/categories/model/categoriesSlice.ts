@@ -1,15 +1,26 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { OTHER_CATEGORY } from '../config';
 import type { ICategory } from '@/entities';
 import { STORAGE_KEYS } from '@/shared/config/';
-import { loadFromLocalStorage } from '@/shared/lib';
+import { loadFromLocalStorage, saveToLocalStorage } from '@/shared/lib';
+
+function loadInitialCategories(): ICategory[] {
+  const categories =
+    loadFromLocalStorage<ICategory[]>(STORAGE_KEYS.CATEGORIES) ?? [];
+
+  if (!categories.some((c: ICategory) => c.id === 'other')) {
+    categories.unshift(OTHER_CATEGORY);
+    saveToLocalStorage(STORAGE_KEYS.CATEGORIES, categories);
+  }
+
+  return categories;
+}
 
 interface ICategoriesState {
   list: ICategory[];
 }
 
-const savedList = loadFromLocalStorage<ICategory[]>(STORAGE_KEYS.CATEGORIES);
-
-const initialState: ICategoriesState = { list: savedList ?? [] };
+const initialState: ICategoriesState = { list: loadInitialCategories() };
 
 const categoriesSlice = createSlice({
   name: 'categories',

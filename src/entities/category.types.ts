@@ -3,6 +3,7 @@ export interface ICategory {
   name: string;
   colorValue: string;
   iconKey: string;
+  undeletable?: boolean;
 }
 
 export interface ICreateCategoryPayload {
