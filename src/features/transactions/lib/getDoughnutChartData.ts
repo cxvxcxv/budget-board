@@ -1,5 +1,4 @@
 import type { IHydratedTransaction } from '@/entities';
-import { expenseColors, incomeColors } from '@/shared/config/color.constants';
 
 export function getPieChartData(
   transactions: IHydratedTransaction[],
@@ -12,13 +11,18 @@ export function getPieChartData(
     return acc;
   }, {});
 
+  const categoryColors = filtered.reduce<Record<string, string>>((acc, t) => {
+    if (!acc[t.categoryName]) {
+      acc[t.categoryName] = t.categoryColorValue || '#9CA3AF'; // fallback gray
+    }
+    return acc;
+  }, {});
+
   const labels = Object.keys(categoryTotals);
   const data = Object.values(categoryTotals);
 
-  const colorMap = type === 'income' ? incomeColors : expenseColors;
-
   const backgroundColors = labels.map(
-    label => colorMap[label] || colorMap['Other'],
+    label => categoryColors[label] || '#9CA3AF', // backup fallback
   );
 
   return {

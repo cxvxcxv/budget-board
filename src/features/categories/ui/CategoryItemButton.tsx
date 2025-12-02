@@ -24,7 +24,9 @@ export const CategoryItemButton = ({
       <div className="flex flex-1 items-center">
         {Icon ? <Icon size={64} strokeWidth={1.5} /> : <CircleX size={64} />}
       </div>
-      <h4 className="mb-4 md:text-xl lg:text-2xl">{category.name}</h4>
+      <h4 className="mb-1 mt-2 w-full truncate px-1 text-center text-sm md:text-base lg:text-lg">
+        {category.name}
+      </h4>
     </button>
   );
 };

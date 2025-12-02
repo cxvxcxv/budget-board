@@ -21,17 +21,17 @@ type TTransactionFormProps = {
 };
 
 export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
-  const categoiries = useAppSelector(state => state.categories.list);
+  const categories = useAppSelector(state => state.categories.list);
 
   const dispatch = useAppDispatch();
 
-  const [data, setData] = useState<ICreateTransactionPayload>(
-    TRANSACTION_FORM_INITIAL_STATE,
-  );
+  const [data, setData] = useState<ICreateTransactionPayload>({
+    ...TRANSACTION_FORM_INITIAL_STATE,
+    categoryId: categories[0]?.id,
+  });
 
   const handleSubmit = () => {
     try {
-      console.log(data);
       const transaction = createTransaction(data);
       dispatch(addTransaction(transaction));
       onClose();
@@ -59,6 +59,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
       {/* type toggle */}
       <div className="flex gap-4">
         <Button
+          type="button"
           onClick={() => setData({ ...data, type: 'expense' })}
           className={clsx('border', {
             'border-expense bg-expense text-white': data.type === 'expense',
@@ -68,6 +69,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
           Expense
         </Button>
         <Button
+          type="button"
           onClick={() => setData({ ...data, type: 'income' })}
           className={clsx('border', {
             'border-income bg-income text-white': data.type === 'income',
@@ -87,7 +89,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
         value={data.categoryId}
         onChange={e => setData({ ...data, categoryId: e.target.value })}
       >
-        {categoiries.map(category => (
+        {categories.map(category => (
           <Option key={category.id} value={category.id}>
             {category.name}
           </Option>

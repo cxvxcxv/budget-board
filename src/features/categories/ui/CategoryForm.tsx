@@ -69,6 +69,7 @@ export const CategoryForm = ({ category, onClose }: TCategoryFormProps) => {
         name="name"
         autoComplete="off"
         placeholder="Name"
+        maxLength={50}
         value={data.name}
         onChange={e => setData(prev => ({ ...prev, name: e.target.value }))}
         className="text-center"
