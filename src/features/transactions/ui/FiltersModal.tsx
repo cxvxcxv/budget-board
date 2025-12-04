@@ -2,6 +2,7 @@ import { Calendar, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import type { ITransactionFiltersState } from '@/entities/transaction.types';
 import { FILTERS_INITIAL_STATE } from '@/features/transactions';
+import { useAppSelector } from '@/shared/hooks';
 import { Field, Option, Select } from '@/shared/ui';
 import { Modal } from '@/shared/ui/Modal';
 
@@ -16,6 +17,8 @@ export const FiltersModal = ({
   onClose,
   onApply,
 }: TFiltersModalProps) => {
+  const categories = useAppSelector(state => state.categories.list);
+
   const [filters, setFilters] = useState<ITransactionFiltersState>(
     FILTERS_INITIAL_STATE,
   );
@@ -67,10 +70,12 @@ export const FiltersModal = ({
               onChange={e => handleChange('categoryName', e.target.value)}
               value={filters.categoryName}
             >
-              <Option className="bg-gray-800 text-white" value="">
-                All categories
-              </Option>
-              {/* map existing categories later */}
+              <Option value="">All categories</Option>
+              {categories.map(category => (
+                <Option key={category.id} value={category.id}>
+                  {category.name}
+                </Option>
+              ))}
             </Select>
             <ChevronDown
               size={16}
