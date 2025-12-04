@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import {
-  AddTransactionModal,
   DoughnutChart,
   LineChart,
   RecentTransactions,
   SummaryStats,
+  TransactionModal,
 } from '@/features/transactions';
 
 export const Dashboard = () => {
@@ -18,7 +18,7 @@ export const Dashboard = () => {
         <DoughnutChart />
       </div>
       <button onClick={() => setIsOpen(true)}>add transaction</button>
-      <AddTransactionModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <TransactionModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };

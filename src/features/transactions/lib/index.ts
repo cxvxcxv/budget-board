@@ -5,5 +5,6 @@ export * from './getLineChartData';
 export * from './groupTransactionsByDate';
 export * from './searchTransactions';
 export * from './sortTransactions';
+export * from './updateTransaction';
 export * from './useProcessedTransactions';
 export * from './validateTransaction';

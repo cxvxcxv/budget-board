@@ -1,7 +1,7 @@
 import { validateTransaction } from './validateTransaction';
-import type { ICreateTransactionPayload, ITransaction } from '@/entities';
+import type { IHydratedTransaction, ITransaction } from '@/entities';
 
-export function createTransaction(data: ICreateTransactionPayload) {
+export function createTransaction(data: IHydratedTransaction) {
   validateTransaction(data);
 
   const transaction: ITransaction = {

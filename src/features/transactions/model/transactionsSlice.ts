@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ITransaction } from '@/entities';
+import type { IHydratedTransaction, ITransaction } from '@/entities';
 import { STORAGE_KEYS } from '@/shared/config';
 import { loadFromLocalStorage } from '@/shared/lib';
 
@@ -20,6 +20,11 @@ const transactionSlice = createSlice({
     addTransaction: (state, action: PayloadAction<ITransaction>) => {
       state.list.push(action.payload);
     },
+    editTransaction: (state, action: PayloadAction<IHydratedTransaction>) => {
+      state.list = state.list.map(transaction =>
+        transaction.id === action.payload.id ? action.payload : transaction,
+      );
+    },
     removeTransaction: (state, action: PayloadAction<string>) => {
       state.list = state.list.filter(
         transaction => transaction.id !== action.payload,
@@ -31,6 +36,10 @@ const transactionSlice = createSlice({
   },
 });
 
-export const { addTransaction, removeTransaction, clearTransactions } =
-  transactionSlice.actions;
+export const {
+  addTransaction,
+  editTransaction,
+  removeTransaction,
+  clearTransactions,
+} = transactionSlice.actions;
 export default transactionSlice.reducer;

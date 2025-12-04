@@ -1,16 +1,18 @@
 import { useMemo } from 'react';
 import { groupTransactionsByDate } from '../lib';
-import { TransactionItem } from './TransactionItem';
+import { TransactionItemButton } from './TransactionItemButton';
 import type { IHydratedTransaction } from '@/entities';
 
 type TTransactionListGruopedProps = {
   transactions: IHydratedTransaction[];
   isReversed: boolean;
+  onEditTransaction: (transaction: IHydratedTransaction) => void;
 };
 
 export const TransactionListGrouped = ({
   transactions,
   isReversed,
+  onEditTransaction,
 }: TTransactionListGruopedProps) => {
   const grouped = useMemo(
     () => groupTransactionsByDate(transactions, isReversed),
@@ -27,7 +29,13 @@ export const TransactionListGrouped = ({
           <h3 className="text-lg font-semibold text-gray-200">{date}</h3>
           <div className="divide-y divide-white/5 overflow-hidden rounded-lg bg-white/5">
             {txs.map(tx => (
-              <TransactionItem key={tx.id} transaction={tx} showDate={false} />
+              <TransactionItemButton
+                key={tx.id}
+                transaction={tx}
+                showDate={false}
+                onClick={() => onEditTransaction(tx)}
+                title="Click to edit"
+              />
             ))}
           </div>
         </div>

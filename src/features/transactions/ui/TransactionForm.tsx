@@ -1,10 +1,12 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import type { ICreateTransactionPayload } from '@/entities';
+import type { IHydratedTransaction } from '@/entities';
 import {
   addTransaction,
   createTransaction,
+  editTransaction,
   TRANSACTION_FORM_INITIAL_STATE,
+  updateTransaction,
 } from '@/features/transactions/';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import {
@@ -17,23 +19,29 @@ import {
 } from '@/shared/ui';
 
 type TTransactionFormProps = {
+  transaction?: IHydratedTransaction;
   onClose: () => void;
 };
 
-export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
+export const TransactionForm = ({
+  transaction,
+  onClose,
+}: TTransactionFormProps) => {
   const categories = useAppSelector(state => state.categories.list);
 
   const dispatch = useAppDispatch();
 
-  const [data, setData] = useState<ICreateTransactionPayload>({
-    ...TRANSACTION_FORM_INITIAL_STATE,
-    categoryId: categories[0]?.id,
-  });
+  const [data, setData] = useState<IHydratedTransaction>(
+    transaction ?? {
+      ...TRANSACTION_FORM_INITIAL_STATE,
+      categoryId: categories[0]?.id,
+    },
+  );
 
   const handleSubmit = () => {
     try {
-      const transaction = createTransaction(data);
-      dispatch(addTransaction(transaction));
+      if (data.id) dispatch(editTransaction(updateTransaction(data)));
+      else dispatch(addTransaction(createTransaction(data)));
       onClose();
     } catch (err) {
       console.error(err);
@@ -54,6 +62,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
         placeholder="0.00"
         step={0.01}
         className="m-auto block max-w-full border-b border-border bg-transparent p-2 text-center text-xl outline-none hover:border-b-primary focus:border-b-primary"
+        value={data.amount}
         onChange={e => setData({ ...data, amount: +e.target.value })}
       />
       {/* type toggle */}
@@ -82,6 +91,7 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
       <Field
         name="title"
         placeholder="Title"
+        value={data.title}
         onChange={e => setData({ ...data, title: e.target.value })}
       />
       <Select
@@ -106,11 +116,12 @@ export const TransactionForm = ({ onClose }: TTransactionFormProps) => {
         name="note"
         placeholder="Note... (Optional)"
         rows={3}
+        value={data.note}
         onChange={e => setData({ ...data, note: e.target.value })}
       />
       <div className="flex justify-end">
         <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600">
-          Add Transaction
+          Save
         </Button>
       </div>
     </form>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import type {
+  IHydratedTransaction,
   ITransactionFiltersState,
   TTransactionsSortState,
 } from '@/entities';
@@ -10,6 +11,7 @@ import {
   selectHydratedTransactions,
   TransactionListFlat,
   TransactionListGrouped,
+  TransactionModal,
   TransactionsHeader,
   useProcessedTransactions,
 } from '@/features/transactions';
@@ -24,6 +26,9 @@ export const Transactions = () => {
   const [isReversed, setIsReversed] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [modalTransaction, setModalTransaction] =
+    useState<IHydratedTransaction>();
 
   const finalTransactions = useProcessedTransactions(
     transactions,
@@ -46,6 +51,11 @@ export const Transactions = () => {
     setIsFiltersOpen(false);
   };
 
+  const handleEditTransaction = (transaction: IHydratedTransaction) => {
+    setModalTransaction(transaction);
+    setIsTransactionModalOpen(true);
+  };
+
   return (
     <section className="space-y-8">
       <TransactionsHeader
@@ -60,17 +70,26 @@ export const Transactions = () => {
 
       {sortBy === 'date' ? (
         <TransactionListGrouped
+          onEditTransaction={handleEditTransaction}
           transactions={finalTransactions}
           isReversed={isReversed}
         />
       ) : (
-        <TransactionListFlat transactions={finalTransactions} />
+        <TransactionListFlat
+          transactions={finalTransactions}
+          onEditTransaction={handleEditTransaction}
+        />
       )}
 
       <FiltersModal
         isOpen={isFiltersOpen}
         onClose={() => setIsFiltersOpen(false)}
         onApply={handleApplyFilters}
+      />
+      <TransactionModal
+        transaction={modalTransaction}
+        isOpen={isTransactionModalOpen}
+        onClose={() => setIsTransactionModalOpen(false)}
       />
     </section>
   );
