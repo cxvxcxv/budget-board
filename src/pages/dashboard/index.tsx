@@ -2,7 +2,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import type { TDateRange } from '@/entities';
 import {
-  buildRangeByType,
+  DateRangeSelector,
   formatDateRange,
   INITIAL_DATE_RANGE,
   shiftDateRange,
@@ -19,23 +19,18 @@ import { Button } from '@/shared/ui';
 export const Dashboard = () => {
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const [dateRange, setDateRange] = useState<TDateRange>(INITIAL_DATE_RANGE);
+
+  const handleChangeDateRange = (range: TDateRange) => {
+    setDateRange(range);
+  };
+
   return (
     <section>
       <div>
-        <div className="flex gap-2">
-          <Button onClick={() => setDateRange(buildRangeByType('day'))}>
-            Day
-          </Button>
-          <Button onClick={() => setDateRange(buildRangeByType('week'))}>
-            Week
-          </Button>
-          <Button onClick={() => setDateRange(buildRangeByType('month'))}>
-            Month
-          </Button>
-          <Button onClick={() => setDateRange(buildRangeByType('year'))}>
-            Year
-          </Button>
-        </div>
+        <DateRangeSelector
+          onChangeDateRange={handleChangeDateRange}
+          selectedType={dateRange.type}
+        />
 
         <div className="flex items-center gap-4">
           <Button onClick={() => setDateRange(r => shiftDateRange(r, 'prev'))}>
