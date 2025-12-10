@@ -45,8 +45,8 @@ export const Dashboard = () => {
         </div>
       </div>
       <div className="grid gap-8">
-        <SummaryStats />
-        <LineChart />
+        <SummaryStats dateRange={dateRange} />
+        <LineChart dateRange={dateRange} />
         <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
           <RecentTransactions />
           <DoughnutChart />

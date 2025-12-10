@@ -8,8 +8,9 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
+import type { TDateRange } from '@/entities';
 import { getLineChartData, lineChartOptions } from '@/features/transactions';
 import { useAppSelector } from '@/shared/hooks/';
 import { GlassCard } from '@/shared/ui';
@@ -24,9 +25,16 @@ ChartJS.register(
   Legend,
 );
 
-export const LineChart: React.FC = () => {
+type TLineChartProps = {
+  dateRange: TDateRange;
+};
+
+export const LineChart = ({ dateRange }: TLineChartProps) => {
   const transactions = useAppSelector(state => state.transactions.list);
-  const data = useMemo(() => getLineChartData(transactions), [transactions]);
+  const data = useMemo(
+    () => getLineChartData(transactions, dateRange),
+    [transactions, dateRange],
+  );
 
   return (
     <GlassCard className="overflow-x-hidden p-6">

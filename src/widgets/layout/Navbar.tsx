@@ -1,5 +1,5 @@
 import { Menu } from 'lucide-react';
-import { useNavbarConfig } from '@/shared/hooks/useNavbarConfig';
+import { useNavbarConfig } from '@/shared/hooks';
 
 type TNavbarProps = {
   onMenuClick: () => void;
