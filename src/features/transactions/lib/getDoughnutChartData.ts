@@ -1,10 +1,18 @@
-import type { IHydratedTransaction } from '@/entities';
+import type { IHydratedTransaction, TDateRange } from '@/entities';
 
-export function getPieChartData(
+export function getDoughnutChartData(
   transactions: IHydratedTransaction[],
   type: 'income' | 'expense',
+  dateRange: TDateRange,
 ) {
-  const filtered = transactions.filter(t => t.type === type);
+  const start = new Date(dateRange.startDate);
+  const end = new Date(dateRange.endDate);
+
+  // filter by type and date range
+  const filtered = transactions.filter(t => {
+    const d = new Date(t.date);
+    return t.type === type && d >= start && d <= end;
+  });
 
   const categoryTotals = filtered.reduce<Record<string, number>>((acc, t) => {
     acc[t.categoryName] = (acc[t.categoryName] || 0) + t.amount;
@@ -13,17 +21,26 @@ export function getPieChartData(
 
   const categoryColors = filtered.reduce<Record<string, string>>((acc, t) => {
     if (!acc[t.categoryName]) {
-      acc[t.categoryName] = t.categoryColorValue || '#9CA3AF'; // fallback gray
+      acc[t.categoryName] = t.categoryColorValue || '#9CA3AF';
     }
     return acc;
   }, {});
 
   const labels = Object.keys(categoryTotals);
   const data = Object.values(categoryTotals);
+  const backgroundColors = labels.map(label => categoryColors[label]);
 
-  const backgroundColors = labels.map(
-    label => categoryColors[label] || '#9CA3AF', // backup fallback
-  );
+  if (labels.length === 0) {
+    return {
+      labels: ['No data'],
+      datasets: [
+        {
+          data: [1],
+          backgroundColor: ['#374151'],
+        },
+      ],
+    };
+  }
 
   return {
     labels,

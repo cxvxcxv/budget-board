@@ -49,7 +49,7 @@ export const Dashboard = () => {
         <LineChart dateRange={dateRange} />
         <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
           <RecentTransactions />
-          <DoughnutChart />
+          <DoughnutChart dateRange={dateRange} />
         </div>
         <TransactionModal
           isOpen={isTransactionModalOpen}
