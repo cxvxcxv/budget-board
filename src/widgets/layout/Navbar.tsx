@@ -9,7 +9,7 @@ export const Navbar = ({ onMenuClick }: TNavbarProps) => {
   const { title } = useNavbarConfig();
 
   return (
-    <header className="flex items-center justify-between border-b border-white/10 bg-gray-900/60 p-4 backdrop-blur lg:hidden">
+    <header className="flex items-center justify-between border-b border-white/10 bg-gray-900/60 p-4 lg:hidden">
       <div className="flex items-center gap-3">
         <button
           onClick={onMenuClick}

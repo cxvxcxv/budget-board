@@ -32,12 +32,14 @@ export const Dashboard = () => {
           selectedType={dateRange.type}
         />
 
-        <div className="flex items-center gap-4">
+        <div className="sticky top-0 z-20 flex items-center gap-4 bg-gray-900/60 backdrop-blur-sm">
           <Button onClick={() => setDateRange(r => shiftDateRange(r, 'prev'))}>
             <ArrowLeft />
           </Button>
 
-          <p>{formatDateRange(dateRange)}</p>
+          <p className="my-4 w-4/5 text-center text-2xl md:w-1/3">
+            {formatDateRange(dateRange)}
+          </p>
 
           <Button onClick={() => setDateRange(r => shiftDateRange(r, 'next'))}>
             <ArrowRight />
