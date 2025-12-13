@@ -25,19 +25,18 @@ export const Dashboard = () => {
   };
 
   return (
-    <section>
-      <div>
-        <DateRangeSelector
-          onChangeDateRange={handleChangeDateRange}
-          selectedType={dateRange.type}
-        />
-
-        <div className="sticky top-0 z-20 flex items-center gap-4 bg-gray-900/60 backdrop-blur-sm">
+    <section className="relative">
+      <DateRangeSelector
+        onChangeDateRange={handleChangeDateRange}
+        selectedType={dateRange.type}
+      />
+      <div className="sticky top-0 z-10 backdrop-blur">
+        <div className="flex items-center gap-4 py-4">
           <Button onClick={() => setDateRange(r => shiftDateRange(r, 'prev'))}>
             <ArrowLeft />
           </Button>
 
-          <p className="my-4 w-4/5 text-center text-2xl md:w-1/3">
+          <p className="w-4/5 text-center text-2xl md:w-1/3">
             {formatDateRange(dateRange)}
           </p>
 
@@ -46,13 +45,17 @@ export const Dashboard = () => {
           </Button>
         </div>
       </div>
-      <div className="grid gap-8">
+
+      {/* Content */}
+      <div className="mt-6 grid gap-8">
         <SummaryStats dateRange={dateRange} />
         <LineChart dateRange={dateRange} />
+
         <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
           <RecentTransactions />
           <DoughnutChart dateRange={dateRange} />
         </div>
+
         <TransactionModal
           isOpen={isTransactionModalOpen}
           onClose={() => setIsTransactionModalOpen(false)}
