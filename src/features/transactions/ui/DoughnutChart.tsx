@@ -34,7 +34,7 @@ export const DoughnutChart = ({ dateRange }: TDoughnutChartProps) => {
           { '[transform:rotateY(180deg)]': flipped },
         )}
       >
-        <GlassCard className="absolute inset-0 flex flex-col items-center justify-between p-4 [backface-visibility:hidden]">
+        <GlassCard className="absolute inset-0 flex flex-col items-center justify-between p-3 [backface-visibility:hidden]">
           <h3 className="text-lg font-semibold text-expense">Expenses</h3>
           <div className="flex w-full flex-1 items-center justify-center">
             <div className="h-44 w-44 sm:h-52 sm:w-52">
@@ -49,7 +49,7 @@ export const DoughnutChart = ({ dateRange }: TDoughnutChartProps) => {
           </button>
         </GlassCard>
 
-        <GlassCard className="absolute inset-0 flex flex-col items-center justify-between p-4 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+        <GlassCard className="absolute inset-0 flex flex-col items-center justify-between p-3 [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <h3 className="text-lg font-semibold text-income">Incomes</h3>
           <div className="flex w-full flex-1 items-center justify-center">
             <div className="h-44 w-44 sm:h-52 sm:w-52">

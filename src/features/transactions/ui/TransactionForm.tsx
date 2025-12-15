@@ -62,7 +62,7 @@ export const TransactionForm = ({
         placeholder="0.00"
         step={0.01}
         className="m-auto block max-w-full border-b border-border bg-transparent p-2 text-center text-xl outline-none hover:border-b-primary focus:border-b-primary"
-        value={data.amount}
+        value={data.amount || ''}
         onChange={e => setData({ ...data, amount: +e.target.value })}
       />
       {/* type toggle */}
