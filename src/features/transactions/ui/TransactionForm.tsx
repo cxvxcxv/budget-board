@@ -1,10 +1,13 @@
 import clsx from 'clsx';
+import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import type { IHydratedTransaction } from '@/entities';
 import {
   addTransaction,
   createTransaction,
   editTransaction,
+  removeTransaction,
   TRANSACTION_FORM_INITIAL_STATE,
   updateTransaction,
 } from '@/features/transactions/';
@@ -37,6 +40,16 @@ export const TransactionForm = ({
       categoryId: categories[0]?.id,
     },
   );
+
+  const handleDelete = () => {
+    try {
+      dispatch(removeTransaction(data.id));
+      toast.success('Deleted');
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = () => {
     try {
@@ -119,8 +132,18 @@ export const TransactionForm = ({
         value={data.note}
         onChange={e => setData({ ...data, note: e.target.value })}
       />
-      <div className="flex justify-end">
-        <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-indigo-600">
+      <div className="flex justify-end gap-4">
+        {transaction && (
+          <Button
+            type="button"
+            className="rounded-xl px-6 py-2 text-danger hover:bg-danger hover:text-white"
+            onClick={handleDelete}
+          >
+            <Trash2 strokeWidth={1.75} width={16} height={16} />
+            Delete
+          </Button>
+        )}
+        <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-primary/70">
           Save
         </Button>
       </div>
