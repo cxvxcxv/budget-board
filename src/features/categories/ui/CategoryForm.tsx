@@ -8,8 +8,8 @@ import {
   CategoryColorsList,
   CategoryIconsList,
   createCategory,
+  deleteCategoryAndReassign,
   editCategory,
-  removeCategory,
   updateCategory,
 } from '@/features/categories';
 import { SELECTABLE_ICONS } from '@/shared/config';
@@ -42,7 +42,7 @@ export const CategoryForm = ({ category, onClose }: TCategoryFormProps) => {
 
   const handleDelete = () => {
     try {
-      dispatch(removeCategory(data.id));
+      dispatch(deleteCategoryAndReassign(data.id));
       toast.success('Deleted');
       onClose();
     } catch (error) {

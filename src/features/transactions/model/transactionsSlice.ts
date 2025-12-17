@@ -30,6 +30,14 @@ const transactionSlice = createSlice({
         transaction => transaction.id !== action.payload,
       );
     },
+    reassignCategory: (state, action) => {
+      state.list.forEach(t => {
+        if (t.categoryId === action.payload.from) {
+          t.categoryId = action.payload.to;
+        }
+      });
+    },
+
     clearTransactions: state => {
       state.list = [];
     },
@@ -40,6 +48,7 @@ export const {
   addTransaction,
   editTransaction,
   removeTransaction,
+  reassignCategory,
   clearTransactions,
 } = transactionSlice.actions;
 export default transactionSlice.reducer;
