@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import type { TDateRange } from '@/entities';
+import { formatCurrency } from '@/features/settings';
 import { useAppSelector } from '@/shared/hooks';
 import { useAnimatedNumber } from '@/shared/hooks/useAnimateNumber';
 import { GlassCard } from '@/shared/ui';
@@ -10,6 +11,7 @@ type TSummaryStatsProps = {
 
 export const SummaryStats = ({ dateRange }: TSummaryStatsProps) => {
   const transactions = useAppSelector(state => state.transactions.list);
+  const currency = useAppSelector(state => state.settings.currency);
 
   const {
     income,
@@ -48,14 +50,14 @@ export const SummaryStats = ({ dateRange }: TSummaryStatsProps) => {
       <GlassCard className="p-6 text-center">
         <h3 className="mb-2 text-text-dimmed">Income</h3>
         <p className="text-2xl font-semibold text-income">
-          ${animatedIncome.toFixed(2)}
+          {formatCurrency(animatedIncome, currency)}
         </p>
       </GlassCard>
 
       <GlassCard className="p-6 text-center">
         <h3 className="mb-2 text-text-dimmed">Expense</h3>
         <p className="text-2xl font-semibold text-expense">
-          ${animatedExpense.toFixed(2)}
+          {formatCurrency(animatedExpense, currency)}
         </p>
       </GlassCard>
 
@@ -66,7 +68,7 @@ export const SummaryStats = ({ dateRange }: TSummaryStatsProps) => {
             netChange >= 0 ? 'text-income' : 'text-expense'
           }`}
         >
-          ${animatedNetChange.toFixed(2)}
+          {formatCurrency(animatedNetChange, currency)}
         </p>
       </GlassCard>
     </div>
