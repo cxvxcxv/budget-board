@@ -1,6 +1,7 @@
+import { OTHER_CATEGORY } from '../config';
 import { removeCategory } from './categoriesSlice';
 import type { AppDispatch } from '@/app/store';
-import { reassignCategory } from '@/features/transactions/model/transactionsSlice';
+import { reassignCategory } from '@/features/transactions';
 
 export const deleteCategoryAndReassign =
   (categoryId: string) => (dispatch: AppDispatch) => {
@@ -9,7 +10,7 @@ export const deleteCategoryAndReassign =
     dispatch(
       reassignCategory({
         from: categoryId,
-        to: 'other',
+        to: OTHER_CATEGORY.id,
       }),
     );
 

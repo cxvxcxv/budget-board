@@ -51,4 +51,4 @@ export const {
   reassignCategory,
   clearTransactions,
 } = transactionSlice.actions;
-export default transactionSlice.reducer;
+export const transactionsReducer = transactionSlice.reducer;

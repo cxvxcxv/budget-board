@@ -19,4 +19,4 @@ const balanceSlice = createSlice({
 });
 
 export const { setBalanceAdjustment } = balanceSlice.actions;
-export default balanceSlice.reducer;
+export const balanceReducer = balanceSlice.reducer;
