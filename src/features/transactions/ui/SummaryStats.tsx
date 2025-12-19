@@ -11,7 +11,7 @@ type TSummaryStatsProps = {
 
 export const SummaryStats = ({ dateRange }: TSummaryStatsProps) => {
   const transactions = useAppSelector(state => state.transactions.list);
-  const currency = useAppSelector(state => state.settings.currency);
+  const currencyCode = useAppSelector(state => state.userSettings.currencyCode);
 
   const {
     income,
@@ -50,14 +50,14 @@ export const SummaryStats = ({ dateRange }: TSummaryStatsProps) => {
       <GlassCard className="p-6 text-center">
         <h3 className="mb-2 text-text-dimmed">Income</h3>
         <p className="text-2xl font-semibold text-income">
-          {formatCurrency(animatedIncome, currency)}
+          {formatCurrency(animatedIncome, currencyCode)}
         </p>
       </GlassCard>
 
       <GlassCard className="p-6 text-center">
         <h3 className="mb-2 text-text-dimmed">Expense</h3>
         <p className="text-2xl font-semibold text-expense">
-          {formatCurrency(animatedExpense, currency)}
+          {formatCurrency(animatedExpense, currencyCode)}
         </p>
       </GlassCard>
 
@@ -68,7 +68,7 @@ export const SummaryStats = ({ dateRange }: TSummaryStatsProps) => {
             netChange >= 0 ? 'text-income' : 'text-expense'
           }`}
         >
-          {formatCurrency(animatedNetChange, currency)}
+          {formatCurrency(animatedNetChange, currencyCode)}
         </p>
       </GlassCard>
     </div>

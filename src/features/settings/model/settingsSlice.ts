@@ -1,15 +1,21 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { SETTINGS_INITIAL_STATE } from '@/shared/config';
+import type { IUserSettingsState } from '@/entities';
+import { SETTINGS_INITIAL_STATE, STORAGE_KEYS } from '@/shared/config';
+import { loadFromLocalStorage } from '@/shared/lib';
+
+const savedSettings = loadFromLocalStorage<IUserSettingsState>(
+  STORAGE_KEYS.USER_SETTINGS,
+);
 
 const settingsSlice = createSlice({
   name: 'settings',
-  initialState: SETTINGS_INITIAL_STATE,
+  initialState: savedSettings ?? SETTINGS_INITIAL_STATE,
   reducers: {
-    setCurrency(state, action: PayloadAction<string>) {
-      state.currency = action.payload;
+    setCurrencyCode(state, action: PayloadAction<string>) {
+      state.currencyCode = action.payload;
     },
   },
 });
 
-export const { setCurrency } = settingsSlice.actions;
+export const { setCurrencyCode } = settingsSlice.actions;
 export const settingsReducer = settingsSlice.reducer;

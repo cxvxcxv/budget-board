@@ -1,3 +1,9 @@
+import { CurrencySelect } from '@/features/settings';
+
 export const Settings = () => {
-  return <div>Settings</div>;
+  return (
+    <section>
+      <CurrencySelect />
+    </section>
+  );
 };

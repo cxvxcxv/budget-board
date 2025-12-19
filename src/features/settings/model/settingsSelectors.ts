@@ -1,3 +1,4 @@
 import type { RootState } from '@/app/store';
 
-export const selectCurrency = (state: RootState) => state.settings.currency;
+export const selectCurrencyCode = (state: RootState) =>
+  state.userSettings.currencyCode;

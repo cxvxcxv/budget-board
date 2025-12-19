@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   transactions: transactionsReducer,
   categories: categoriesReducer,
   balance: balanceReducer,
-  settings: settingsReducer,
+  userSettings: settingsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

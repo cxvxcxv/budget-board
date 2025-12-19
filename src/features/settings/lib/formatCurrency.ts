@@ -1,6 +1,6 @@
-export function formatCurrency(value: number, currency: string) {
+export function formatCurrency(value: number, currencyCode: string) {
   return new Intl.NumberFormat(undefined, {
     style: 'currency',
-    currency,
+    currency: currencyCode,
   }).format(value);
 }

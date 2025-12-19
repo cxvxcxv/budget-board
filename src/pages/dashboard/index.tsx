@@ -9,6 +9,7 @@ import {
   INITIAL_DATE_RANGE,
   shiftDateRange,
 } from '@/features/dashboard';
+import { formatCurrency } from '@/features/settings';
 import {
   DoughnutChart,
   LineChart,
@@ -21,6 +22,7 @@ import { Button } from '@/shared/ui';
 
 export const Dashboard = () => {
   const balance = useAppSelector(selectTotalBalance);
+  const currencyCode = useAppSelector(state => state.userSettings.currencyCode);
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const [dateRange, setDateRange] = useState<TDateRange>(INITIAL_DATE_RANGE);
 
@@ -38,7 +40,7 @@ export const Dashboard = () => {
                 balance >= 0 ? 'text-white' : 'text-red-400',
               )}
             >
-              ${balance.toFixed(2)}
+              {formatCurrency(balance, currencyCode)}
             </p>
           </div>
 

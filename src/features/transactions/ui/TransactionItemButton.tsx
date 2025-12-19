@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import type { ButtonHTMLAttributes } from 'react';
 import type { IHydratedTransaction } from '@/entities';
+import { formatCurrency } from '@/features/settings';
+import { useAppSelector } from '@/shared/hooks';
 
 type TTransactionItemProps = {
   transaction: IHydratedTransaction;
@@ -12,6 +14,8 @@ export const TransactionItemButton = ({
   showDate = true,
   ...props
 }: TTransactionItemProps) => {
+  const currencyCode = useAppSelector(state => state.userSettings.currencyCode);
+
   return (
     <button
       className="flex w-full items-center justify-between px-4 py-3 text-start transition hover:bg-white/10"
@@ -35,8 +39,8 @@ export const TransactionItemButton = ({
           transaction.type === 'income' ? 'text-income' : 'text-expense',
         )}
       >
-        {transaction.type === 'income' ? '+' : '-'}$
-        {transaction.amount.toFixed(2)}
+        {transaction.type === 'income' ? '+' : '-'}
+        {formatCurrency(transaction.amount, currencyCode)}
       </div>
     </button>
   );
