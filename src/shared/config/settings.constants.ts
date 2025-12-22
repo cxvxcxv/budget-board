@@ -1,7 +1,12 @@
-import type { TCurrencyCode } from '@/entities';
+import type {
+  IUserSettingsState,
+  TCurrencyCode,
+  TDateRangeType,
+} from '@/entities';
 
-export const SETTINGS_INITIAL_STATE = {
+export const SETTINGS_INITIAL_STATE: IUserSettingsState = {
   currencyCode: 'USD',
+  defaultDateRangeType: 'month',
 };
 
 export const CURRENCIES: {
@@ -43,4 +48,14 @@ export const CURRENCIES: {
   { code: 'AED', label: 'UAE Dirham (AED)' },
   { code: 'USD', label: 'US Dollar (USD)' },
   { code: 'VND', label: 'Vietnamese Dong (VND)' },
+];
+
+export const DATE_RANGE_TYPE_OPTIONS: {
+  value: TDateRangeType;
+  label: string;
+}[] = [
+  { value: 'day', label: 'Day' },
+  { value: 'week', label: 'Week' },
+  { value: 'month', label: 'Month' },
+  { value: 'year', label: 'Year' },
 ];

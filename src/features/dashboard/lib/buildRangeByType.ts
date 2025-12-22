@@ -1,4 +1,4 @@
-import type { TDateRange } from '@/entities';
+import type { TDateRange, TDateRangeType } from '@/entities';
 
 const startOfDay = (date: Date) =>
   new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -7,7 +7,7 @@ const endOfDay = (date: Date) =>
   new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
 
 export const buildRangeByType = (
-  type: 'day' | 'week' | 'month' | 'year',
+  type: TDateRangeType,
   baseDate = new Date(),
 ): TDateRange => {
   const start = new Date(baseDate);

@@ -1,8 +1,7 @@
-import type { TDateRange, TDateRangeType } from '@/entities'
-import { Button } from '@/shared/ui'
-import { buildRangeByType } from '../lib'
-
-const RANGE_TYPES: TDateRangeType[] = ['day', 'week', 'month', 'year'];
+import { buildRangeByType } from '../lib';
+import type { TDateRange, TDateRangeType } from '@/entities';
+import { DATE_RANGE_TYPE_OPTIONS } from '@/shared/config';
+import { Button } from '@/shared/ui';
 
 type TDateRangeSelectorProps = {
   selectedType: TDateRangeType;
@@ -15,18 +14,17 @@ export const DateRangeSelector = ({
 }: TDateRangeSelectorProps) => {
   return (
     <div className="flex gap-2">
-      {RANGE_TYPES.map(type => (
+      {DATE_RANGE_TYPE_OPTIONS.map(o => (
         <Button
-          key={type}
-          onClick={() => onChangeDateRange(buildRangeByType(type))}
+          key={o.value}
+          onClick={() => onChangeDateRange(buildRangeByType(o.value))}
           className={
-            type === selectedType
+            o.value === selectedType
               ? 'bg-primary hover:opacity-90'
               : 'bg-gray-800 hover:bg-gray-700'
           }
         >
-          {/* capitalize type */}
-          {type[0].toUpperCase() + type.slice(1)}
+          {o.label}
         </Button>
       ))}
     </div>

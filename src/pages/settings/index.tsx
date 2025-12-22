@@ -1,9 +1,10 @@
-import { CurrencySelect } from '@/features/settings';
+import { CurrencySelect, DefaultDateRangeSelect } from '@/features/settings';
 
 export const Settings = () => {
   return (
-    <section>
+    <section className="space-y-6">
       <CurrencySelect />
+      <DefaultDateRangeSelect />
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { IUserSettingsState } from '@/entities';
+import type { IUserSettingsState, TDateRangeType } from '@/entities';
 import { SETTINGS_INITIAL_STATE, STORAGE_KEYS } from '@/shared/config';
 import { loadFromLocalStorage } from '@/shared/lib';
 
@@ -14,8 +14,12 @@ const settingsSlice = createSlice({
     setCurrencyCode(state, action: PayloadAction<string>) {
       state.currencyCode = action.payload;
     },
+    setDefaultDateRangeType(state, action: PayloadAction<TDateRangeType>) {
+      state.defaultDateRangeType = action.payload;
+    },
   },
 });
 
-export const { setCurrencyCode } = settingsSlice.actions;
+export const { setCurrencyCode, setDefaultDateRangeType } =
+  settingsSlice.actions;
 export const settingsReducer = settingsSlice.reducer;

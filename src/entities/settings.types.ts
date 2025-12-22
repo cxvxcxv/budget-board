@@ -1,5 +1,8 @@
+import type { TDateRangeType } from './dashboard.types';
+
 export interface IUserSettingsState {
   currencyCode: string;
+  defaultDateRangeType: TDateRangeType;
 }
 
 export type TCurrencyCode =

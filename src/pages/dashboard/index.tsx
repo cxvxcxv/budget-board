@@ -4,12 +4,15 @@ import { useState } from 'react';
 import type { TDateRange } from '@/entities';
 import { selectTotalBalance } from '@/features/balance/model/balanceSelectors';
 import {
+  buildRangeByType,
   DateRangeSelector,
   formatDateRange,
-  INITIAL_DATE_RANGE,
   shiftDateRange,
 } from '@/features/dashboard';
-import { formatCurrency } from '@/features/settings';
+import {
+  formatCurrency,
+  selectDefaultDateRangeType,
+} from '@/features/settings';
 import {
   DoughnutChart,
   LineChart,
@@ -21,10 +24,13 @@ import { useAppSelector } from '@/shared/hooks';
 import { Button } from '@/shared/ui';
 
 export const Dashboard = () => {
+  const defaultDateRangeType = useAppSelector(selectDefaultDateRangeType);
   const balance = useAppSelector(selectTotalBalance);
   const currencyCode = useAppSelector(state => state.userSettings.currencyCode);
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
-  const [dateRange, setDateRange] = useState<TDateRange>(INITIAL_DATE_RANGE);
+  const [dateRange, setDateRange] = useState<TDateRange>(() =>
+    buildRangeByType(defaultDateRangeType),
+  );
 
   return (
     <section className="relative space-y-6">
