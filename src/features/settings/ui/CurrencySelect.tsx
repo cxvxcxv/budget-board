@@ -15,7 +15,7 @@ export const CurrencySelect = () => {
       <Select
         value={currency}
         onChange={e => dispatch(setCurrencyCode(e.target.value))}
-        className="w-full rounded-lg bg-white/10 p-2"
+        className="w-full p-2 rounded-lg bg-white/10"
       >
         {CURRENCIES.map(c => (
           <Option key={c.code} value={c.code}>
