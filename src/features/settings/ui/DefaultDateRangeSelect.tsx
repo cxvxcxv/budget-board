@@ -10,7 +10,7 @@ export const DefaultDateRangeSelect = () => {
     useAppSelector(selectDefaultDateRangeType) ?? 'month';
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1">
       <label className="text-sm text-text-dimmed">Default Date Range</label>
 
       <Select
@@ -18,7 +18,7 @@ export const DefaultDateRangeSelect = () => {
         onChange={e =>
           dispatch(setDefaultDateRangeType(e.target.value as TDateRangeType))
         }
-        className="w-full rounded-lg bg-white/10 p-2"
+        className="w-full p-2 rounded-lg bg-white/10"
       >
         {DATE_RANGE_TYPE_OPTIONS.map(o => (
           <Option key={o.value} value={o.value}>

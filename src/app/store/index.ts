@@ -13,6 +13,7 @@ store.subscribe(() => {
   saveToLocalStorage(STORAGE_KEYS.TRANSACTIONS, state.transactions.list);
   saveToLocalStorage(STORAGE_KEYS.CATEGORIES, state.categories.list);
   saveToLocalStorage(STORAGE_KEYS.USER_SETTINGS, state.userSettings);
+  saveToLocalStorage(STORAGE_KEYS.BALANCE, state.balance.value);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

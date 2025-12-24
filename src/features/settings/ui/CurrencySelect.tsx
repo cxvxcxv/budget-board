@@ -9,7 +9,7 @@ export const CurrencySelect = () => {
   const currency = useAppSelector(selectCurrencyCode);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1">
       <label className="text-sm text-text-dimmed">Currency</label>
 
       <Select

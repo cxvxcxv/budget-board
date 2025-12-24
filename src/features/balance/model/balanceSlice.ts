@@ -1,22 +1,27 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { STORAGE_KEYS } from '@/shared/config';
+import { loadFromLocalStorage } from '@/shared/lib';
 
 type BalanceState = {
-  adjustment: number;
+  value: number;
 };
 
 const initialState: BalanceState = {
-  adjustment: 0,
+  value: loadFromLocalStorage(STORAGE_KEYS.BALANCE) ?? 0,
 };
 
 const balanceSlice = createSlice({
   name: 'balance',
   initialState,
   reducers: {
-    setBalanceAdjustment(state, action: PayloadAction<number>) {
-      state.adjustment = action.payload;
+    setBalance(state, action: PayloadAction<number>) {
+      state.value = action.payload;
+    },
+    applyBalanceDelta(state, action: PayloadAction<number>) {
+      state.value += action.payload;
     },
   },
 });
 
-export const { setBalanceAdjustment } = balanceSlice.actions;
+export const { setBalance, applyBalanceDelta } = balanceSlice.actions;
 export const balanceReducer = balanceSlice.reducer;

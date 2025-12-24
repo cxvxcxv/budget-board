@@ -2,7 +2,9 @@ import clsx from 'clsx';
 import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { getTransactionDelta } from '../lib/getTransactionDelta';
 import type { IHydratedTransaction } from '@/entities';
+import { applyBalanceDelta } from '@/features/balance/model';
 import {
   addTransaction,
   createTransaction,
@@ -53,8 +55,17 @@ export const TransactionForm = ({
 
   const handleSubmit = () => {
     try {
-      if (data.id) dispatch(editTransaction(updateTransaction(data)));
-      else dispatch(addTransaction(createTransaction(data)));
+      if (data.id && transaction) {
+        const prevDelta = getTransactionDelta(transaction);
+        const nextDelta = getTransactionDelta(data);
+
+        dispatch(editTransaction(updateTransaction(data)));
+        dispatch(applyBalanceDelta(nextDelta - prevDelta));
+      } else {
+        const created = createTransaction(data);
+        dispatch(addTransaction(created));
+        dispatch(applyBalanceDelta(getTransactionDelta(created)));
+      }
       onClose();
     } catch (err) {
       console.error(err);
@@ -74,7 +85,7 @@ export const TransactionForm = ({
         type="number"
         placeholder="0.00"
         step={0.01}
-        className="m-auto block max-w-full border-b border-border bg-transparent p-2 text-center text-xl outline-none hover:border-b-primary focus:border-b-primary"
+        className="block max-w-full p-2 m-auto text-xl text-center bg-transparent border-b outline-none border-border hover:border-b-primary focus:border-b-primary"
         value={data.amount || ''}
         onChange={e => setData({ ...data, amount: +e.target.value })}
       />
@@ -136,14 +147,14 @@ export const TransactionForm = ({
         {transaction && (
           <Button
             type="button"
-            className="rounded-xl px-6 py-2 text-danger hover:bg-danger hover:text-white"
+            className="px-6 py-2 rounded-xl text-danger hover:bg-danger hover:text-white"
             onClick={handleDelete}
           >
             <Trash2 strokeWidth={1.75} width={16} height={16} />
             Delete
           </Button>
         )}
-        <Button className="rounded-xl bg-primary px-6 py-2 hover:bg-primary/70">
+        <Button className="px-6 py-2 rounded-xl bg-primary hover:bg-primary/70">
           Save
         </Button>
       </div>

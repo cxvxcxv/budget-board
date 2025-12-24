@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react';
 import { useState } from 'react';
 import type { TDateRange } from '@/entities';
-import { selectTotalBalance } from '@/features/balance/model/balanceSelectors';
+import { selectBalance } from '@/features/balance/model/balanceSelectors';
 import {
   buildRangeByType,
   DateRangeSelector,
@@ -25,7 +25,7 @@ import { Button } from '@/shared/ui';
 
 export const Dashboard = () => {
   const defaultDateRangeType = useAppSelector(selectDefaultDateRangeType);
-  const balance = useAppSelector(selectTotalBalance);
+  const balance = useAppSelector(selectBalance);
   const currencyCode = useAppSelector(state => state.userSettings.currencyCode);
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const [dateRange, setDateRange] = useState<TDateRange>(() =>
