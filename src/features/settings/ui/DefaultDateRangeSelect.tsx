@@ -11,14 +11,17 @@ export const DefaultDateRangeSelect = () => {
 
   return (
     <div className="space-y-1">
-      <label className="text-sm text-text-dimmed">Default Date Range</label>
+      <label htmlFor="default-date-range" className="text-sm text-text-dimmed">
+        Default Date Range
+      </label>
 
       <Select
+        id="default-date-range"
         value={defaultDateRange}
         onChange={e =>
           dispatch(setDefaultDateRangeType(e.target.value as TDateRangeType))
         }
-        className="w-full p-2 rounded-lg bg-white/10"
+        className="w-full rounded-lg bg-white/10 p-2"
       >
         {DATE_RANGE_TYPE_OPTIONS.map(o => (
           <Option key={o.value} value={o.value}>

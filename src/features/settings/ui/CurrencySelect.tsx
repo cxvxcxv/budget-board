@@ -10,12 +10,15 @@ export const CurrencySelect = () => {
 
   return (
     <div className="space-y-1">
-      <label className="text-sm text-text-dimmed">Currency</label>
+      <label htmlFor="currency" className="text-sm text-text-dimmed">
+        Currency
+      </label>
 
       <Select
+        id="currency"
         value={currency}
         onChange={e => dispatch(setCurrencyCode(e.target.value))}
-        className="w-full p-2 rounded-lg bg-white/10"
+        className="w-full rounded-lg bg-white/10 p-2"
       >
         {CURRENCIES.map(c => (
           <Option key={c.code} value={c.code}>
