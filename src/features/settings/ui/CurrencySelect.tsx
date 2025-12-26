@@ -9,16 +9,17 @@ export const CurrencySelect = () => {
   const currency = useAppSelector(selectCurrencyCode);
 
   return (
-    <div className="space-y-1">
-      <label htmlFor="currency" className="text-sm text-text-dimmed">
-        Currency
-      </label>
-
+    <fieldset className="space-y-2">
+      <legend className="text-sm font-medium text-text-dimmed">Currency</legend>
+      <p id="currency-description" className="text-xs text-text-dimmed">
+        Select the currency for your transactions and balance display.
+      </p>
       <Select
         id="currency"
         value={currency}
         onChange={e => dispatch(setCurrencyCode(e.target.value))}
         className="w-full rounded-lg bg-white/10 p-2"
+        aria-describedby="currency-description"
       >
         {CURRENCIES.map(c => (
           <Option key={c.code} value={c.code}>
@@ -26,6 +27,6 @@ export const CurrencySelect = () => {
           </Option>
         ))}
       </Select>
-    </div>
+    </fieldset>
   );
 };

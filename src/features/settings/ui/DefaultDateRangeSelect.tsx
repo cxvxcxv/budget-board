@@ -10,11 +10,13 @@ export const DefaultDateRangeSelect = () => {
     useAppSelector(selectDefaultDateRangeType) ?? 'month';
 
   return (
-    <div className="space-y-1">
-      <label htmlFor="default-date-range" className="text-sm text-text-dimmed">
+    <fieldset className="space-y-2">
+      <legend className="text-sm font-medium text-text-dimmed">
         Default Date Range
-      </label>
-
+      </legend>
+      <p id="date-range-description" className="text-xs text-text-dimmed">
+        Choose the default time period for viewing transactions and reports.
+      </p>
       <Select
         id="default-date-range"
         value={defaultDateRange}
@@ -22,6 +24,7 @@ export const DefaultDateRangeSelect = () => {
           dispatch(setDefaultDateRangeType(e.target.value as TDateRangeType))
         }
         className="w-full rounded-lg bg-white/10 p-2"
+        aria-describedby="date-range-description"
       >
         {DATE_RANGE_TYPE_OPTIONS.map(o => (
           <Option key={o.value} value={o.value}>
@@ -29,6 +32,6 @@ export const DefaultDateRangeSelect = () => {
           </Option>
         ))}
       </Select>
-    </div>
+    </fieldset>
   );
 };
