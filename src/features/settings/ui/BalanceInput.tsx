@@ -35,7 +35,7 @@ export const BalanceInput = () => {
 
   return (
     <fieldset className="space-y-2">
-      <legend className="text-sm font-medium text-text-dimmed">Balance</legend>
+      <legend className="text-sm font-medium text-text-muted">Balance</legend>
       <p id="balance-description" className="text-xs text-text-dimmed">
         Set your current account balance. This will be used for calculations.
       </p>

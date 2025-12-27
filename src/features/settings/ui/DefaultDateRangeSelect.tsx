@@ -11,7 +11,7 @@ export const DefaultDateRangeSelect = () => {
 
   return (
     <fieldset className="space-y-2">
-      <legend className="text-sm font-medium text-text-dimmed">
+      <legend className="text-sm font-medium text-text-muted">
         Default Date Range
       </legend>
       <p id="date-range-description" className="text-xs text-text-dimmed">

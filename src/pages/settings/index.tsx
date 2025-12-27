@@ -5,7 +5,7 @@ export const Settings = () => {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-text text-2xl font-bold">Settings</h1>
+        <h1 className="text-2xl font-bold">Settings</h1>
         <p className="text-sm text-text-dimmed">
           Customize your budget board preferences.
         </p>

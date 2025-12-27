@@ -10,7 +10,7 @@ export const CurrencySelect = () => {
 
   return (
     <fieldset className="space-y-2">
-      <legend className="text-sm font-medium text-text-dimmed">Currency</legend>
+      <legend className="text-sm font-medium text-text-muted">Currency</legend>
       <p id="currency-description" className="text-xs text-text-dimmed">
         Select the currency for your transactions and balance display.
       </p>
