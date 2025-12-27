@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { validateBalanceValue } from '../lib';
 import { selectBalance } from '@/features/balance/model/balanceSelectors';
 import { setBalance } from '@/features/balance/model/balanceSlice';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
@@ -8,43 +9,28 @@ import { Button, Field } from '@/shared/ui';
 export const BalanceInput = () => {
   const dispatch = useAppDispatch();
   const balance = useAppSelector(selectBalance);
-  const [value, setValue] = useState(balance);
-  const [isSaving, setIsSaving] = useState(false);
+  const [textValue, setTextValue] = useState(balance.toString());
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setValue(balance);
+    setTextValue(balance.toString());
   }, [balance]);
 
-  const validateValue = (val: number) => {
-    if (isNaN(val)) return 'Please enter a valid number';
-    if (val < 0) return 'Balance cannot be negative';
-    return '';
-  };
-
   const handleSave = () => {
-    const validationError = validateValue(value);
+    const validationError = validateBalanceValue(textValue);
     if (validationError) {
       setError(validationError);
       return;
     }
     setError('');
-    setIsSaving(true);
-    dispatch(setBalance(value));
+    dispatch(setBalance(Number(textValue)));
     toast.success('Balance saved successfully');
-    setIsSaving(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSave();
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = +e.target.value;
-    setValue(newValue);
-    setError(''); // Clear error on change
   };
 
   return (
@@ -59,8 +45,8 @@ export const BalanceInput = () => {
             id="balance"
             type="number"
             placeholder="0.00"
-            value={value || ''}
-            onChange={handleChange}
+            defaultValue={textValue || ''}
+            onChange={e => setTextValue(e.target.value)}
             onKeyDown={handleKeyDown}
             aria-describedby="balance-description balance-error"
             aria-invalid={!!error}
@@ -83,10 +69,9 @@ export const BalanceInput = () => {
         <Button
           className="h-9 max-w-min bg-primary px-8 hover:bg-primary/70 disabled:cursor-not-allowed disabled:opacity-50"
           onClick={handleSave}
-          disabled={isSaving}
           aria-label="Save balance"
         >
-          {isSaving ? 'Saving...' : 'Save'}
+          Save
         </Button>
       </div>
     </fieldset>
