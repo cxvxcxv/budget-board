@@ -1,13 +1,17 @@
 import { selectDefaultDateRangeType, setDefaultDateRangeType } from '../model';
 import type { TDateRangeType } from '@/entities';
-import { DATE_RANGE_TYPE_OPTIONS } from '@/shared/config';
+import {
+  DATE_RANGE_TYPE_OPTIONS,
+  SETTINGS_INITIAL_STATE,
+} from '@/shared/config';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 import { Option, Select } from '@/shared/ui';
 
 export const DefaultDateRangeSelect = () => {
   const dispatch = useAppDispatch();
   const defaultDateRange =
-    useAppSelector(selectDefaultDateRangeType) ?? 'month';
+    useAppSelector(selectDefaultDateRangeType) ??
+    SETTINGS_INITIAL_STATE.defaultDateRangeType;
 
   return (
     <fieldset className="space-y-2">
