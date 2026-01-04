@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { selectCurrencyCode } from '../model/settingsSelectors';
 import { setCurrencyCode } from '../model/settingsSlice';
 import { CURRENCIES } from '@/shared/config';
@@ -8,6 +9,11 @@ export const CurrencySelect = () => {
   const dispatch = useAppDispatch();
   const currency = useAppSelector(selectCurrencyCode);
 
+  const handleChange = (targettedCurrencyCode: string) => {
+    dispatch(setCurrencyCode(targettedCurrencyCode));
+    toast.success('Currency updated');
+  };
+
   return (
     <fieldset className="space-y-2">
       <legend className="text-sm font-medium text-text-muted">Currency</legend>
@@ -17,7 +23,7 @@ export const CurrencySelect = () => {
       <Select
         id="currency"
         value={currency}
-        onChange={e => dispatch(setCurrencyCode(e.target.value))}
+        onChange={e => handleChange(e.target.value)}
         className="w-full rounded-lg bg-white/10 p-2"
         aria-describedby="currency-description"
       >
