@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { selectDefaultDateRangeType, setDefaultDateRangeType } from '../model';
 import type { TDateRangeType } from '@/entities';
 import {
@@ -13,6 +14,11 @@ export const DefaultDateRangeSelect = () => {
     useAppSelector(selectDefaultDateRangeType) ??
     SETTINGS_INITIAL_STATE.defaultDateRangeType;
 
+  const handleChange = (targettedDateRangeType: string) => {
+    dispatch(setDefaultDateRangeType(targettedDateRangeType as TDateRangeType));
+    toast.success('Default date range updated');
+  };
+
   return (
     <fieldset className="space-y-2">
       <legend className="text-sm font-medium text-text-muted">
@@ -24,9 +30,7 @@ export const DefaultDateRangeSelect = () => {
       <Select
         id="default-date-range"
         value={defaultDateRange}
-        onChange={e =>
-          dispatch(setDefaultDateRangeType(e.target.value as TDateRangeType))
-        }
+        onChange={e => handleChange(e.target.value)}
         className="w-full rounded-lg bg-white/10 p-2"
         aria-describedby="date-range-description"
       >
