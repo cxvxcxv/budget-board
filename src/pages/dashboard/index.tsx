@@ -69,7 +69,10 @@ export const Dashboard = () => {
 
       <div className="sticky top-0 z-10 -mx-6 border-y border-white/10 bg-gray-900/80 px-6 py-3 backdrop-blur">
         <div className="flex items-center justify-center gap-4">
-          <Button onClick={() => setDateRange(r => shiftDateRange(r, 'prev'))}>
+          <Button
+            onClick={() => setDateRange(r => shiftDateRange(r, 'prev'))}
+            title="previous range period"
+          >
             <ArrowLeft />
           </Button>
 
@@ -77,7 +80,10 @@ export const Dashboard = () => {
             {formatDateRange(dateRange)}
           </p>
 
-          <Button onClick={() => setDateRange(r => shiftDateRange(r, 'next'))}>
+          <Button
+            onClick={() => setDateRange(r => shiftDateRange(r, 'next'))}
+            title="next range period"
+          >
             <ArrowRight />
           </Button>
         </div>
